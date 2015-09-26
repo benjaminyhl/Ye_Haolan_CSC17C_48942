@@ -27,15 +27,18 @@ int main(int argc, char** argv) {
     //Set the random number seed
     srand(static_cast<unsigned int>(time(0)));
     //Declare variables
-    const int SIZE=800;
+    const int SIZE=200;
     int array[SIZE];
     //Fill the array
     filAray(array,SIZE);
     //Print the array
     //prntAry(array,SIZE,10);
     //Sort the Array
-    int eq,lop,lsa,add;
-    markSrt(array,SIZE,eq,lop,lsa,add);
+    int eq,//Total number of equalities
+        lop,//Total number of logical operations
+        lsa,//Total number of add/sub operations
+        add;//Total number of addressing operations
+    bubSrt(array,SIZE,eq,lop,lsa,add);
     //Print again
     //prntAry(array,SIZE,10);
     //Find something
@@ -82,13 +85,16 @@ void bubSrt(int a[],int n,int &eq, int &lop, int &lsa, int &add) {
     do {
         eq++;
         swap=false;
-        
+        lsa++;eq++;
         for(int i=0;i<n-1;i++) {
+        lop+=2;lsa+=3;add+=2;    
             if(a[i]>a[i+1]) {
                 int temp=a[i];
                 a[i]=a[i+1];
                 a[i+1]=temp;
                 swap=true;
+                add+=4;
+                eq+=4;
             }
         }
         
