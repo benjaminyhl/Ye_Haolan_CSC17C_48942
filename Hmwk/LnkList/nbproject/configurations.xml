@@ -13,7 +13,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>LnkList.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -38,8 +37,6 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="LnkList.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="LnkList.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -65,8 +62,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="LnkList.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="LnkList.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
