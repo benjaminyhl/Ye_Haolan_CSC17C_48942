@@ -175,8 +175,6 @@ void LnkList<T>::insertAfter(T n,T a) {
     
 }
 
-
-
 //delete a node that contains value n
 template <class T>
 void LnkList<T>::extr(T n) {
@@ -192,7 +190,6 @@ void LnkList<T>::extr(T n) {
         } else {
             node=node->next;
         }
-        
     }
     if(head->value==n) {
         node=node->next;
@@ -200,19 +197,6 @@ void LnkList<T>::extr(T n) {
         head=node;
         size--;
     } 
-    
-    
-//        do {
-//            preNode=node;
-//            node=node->next;
-//        } while(node!=nullptr&&node->value!=n);
-//        //if node is not null
-//        if(node!=nullptr) {
-//            preNode->next=node->next;
-//            delete node;
-//            size--;
-//        }
-    
 }
 
 //Output all node of Linked List
