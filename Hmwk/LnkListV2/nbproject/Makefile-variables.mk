@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=lnklist
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/lnklist
+CND_ARTIFACT_NAME_Debug=lnklistv2
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/lnklistv2
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=lnklist.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/lnklist.tar
+CND_PACKAGE_NAME_Debug=lnklistv2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/lnklistv2.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=lnklist
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/lnklist
+CND_ARTIFACT_NAME_Release=lnklistv2
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/lnklistv2
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=lnklist.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/lnklist.tar
+CND_PACKAGE_NAME_Release=lnklistv2.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/lnklistv2.tar
 #
 # include compiler specific variables
 #

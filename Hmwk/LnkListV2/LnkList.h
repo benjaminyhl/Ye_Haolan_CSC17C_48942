@@ -20,31 +20,53 @@ class LnkList {
         List *head;
         int size;
     public:
+        //Constructor
         LnkList() {head=nullptr;size=0;}
+        
+        //Copy Constructor
         LnkList(const LnkList &);
+        
+        //Destructor
         ~LnkList();
+        
+        //extract
         void extr(T);
         void prepend(T);
         void append(T);
         void insertAfter(T,T);
         void insertBefore(T,T);
-        void dspList() const;
+        void dspList() const; //display the list
         T &operator[](const int &);
         int getSize() const {return size;}
         void subError();
     
 };
 
-//Constructor
+//Copy Constructor
 template <class T>
 LnkList<T>::LnkList(const LnkList &lnk) {
-    if(lnk.head==nullptr) head=nullptr;
-    List *node1=new List;
-    List *node2=new List;
-    node1=head;
-    node2=lnk.head;
-    while(node2!=nullptr) {
-        
+    List *node1;//node for new Linked List
+    List *node2;//node For old Linked List
+    List *temp;//Temp int
+    this->size=lnk.size;
+    if(size==0) head=nullptr;
+    else {
+        //connect all the node together
+        head=new List;
+        head->next=nullptr;
+        temp=head;
+        for(int i=0;i<size-1;i++) {
+            temp->next=new List;
+            temp=temp->next;
+        }
+        node1=head;
+        node2=lnk.head;
+        //fill the list
+        for(int i=0;i<size;i++) {
+            node1->value=node2->value;
+            node1=node1->next;
+            node2=node2->next;
+        }
     }
 }
 
@@ -66,6 +88,23 @@ LnkList<T>::~LnkList() {
     }
 }
 
+
+//push the node containing value n at the beginning
+template <class T>
+void LnkList<T>::prepend(T n) {
+    List *newNode;//node needed to push
+    newNode=new List;
+    //set the new node
+    newNode->value=n;
+    newNode->next=nullptr;
+    //when head is null
+    if(!head) head=newNode;
+    else {
+        newNode->next=head;
+        head=newNode;
+    }
+    size++;
+}
 //push the node containing value n to the end
 template <class T>
 void LnkList<T>::append(T n) {
@@ -124,6 +163,7 @@ void LnkList<T>::insertAfter(T n,T a) {
     newNode->next=nullptr; 
     if(head==nullptr) return;
     node=head;
+    //loop to find a number a
     while(node->next!=nullptr&&node->value!=a) {
         node=node->next;
     } 
@@ -136,22 +176,6 @@ void LnkList<T>::insertAfter(T n,T a) {
 }
 
 
-//push the node containing value n at the beginning
-template <class T>
-void LnkList<T>::prepend(T n) {
-    List *newNode;//node needed to push
-    newNode=new List;
-    //set the new node
-    newNode->value=n;
-    newNode->next=nullptr;
-    //when head is null
-    if(!head) head=newNode;
-    else {
-        newNode->next=head;
-        head=newNode;
-    }
-    size++;
-}
 
 //delete a node that contains value n
 template <class T>
@@ -159,25 +183,30 @@ void LnkList<T>::extr(T n) {
     List *node;
     List *preNode;//previous node
     if(head==nullptr) return;
-    if(head->value==n) {
-        node=head->next;
-        //set the first node to the next to head
-        delete head;
-        head=node;
-    } else {
-        node=head;
-        //loop until node is null or the value n
-        do {
-            preNode=node;
-            node=node->next;
-        } while(node!=nullptr&&node->value!=n);
-        //if node is not null
-        if(node!=nullptr) {
+    
+    node=head;
+    //loop until node is null or the value n
+    while(node!=nullptr) {
+        preNode=node;
+        if(node->next==nullptr) break;
+        node=node->next;
+        if(node->value==n) {
             preNode->next=node->next;
             delete node;
             size--;
         }
     }
+//        do {
+//            preNode=node;
+//            node=node->next;
+//        } while(node!=nullptr&&node->value!=n);
+//        //if node is not null
+//        if(node!=nullptr) {
+//            preNode->next=node->next;
+//            delete node;
+//            size--;
+//        }
+    
 }
 
 //Output all node of Linked List
@@ -192,6 +221,7 @@ void LnkList<T>::dspList() const {
     } 
 }
 
+//Override operation
 template <class T>
 T &LnkList<T>::operator[](const int &sub) {
    if (sub < 0||sub >=size)
