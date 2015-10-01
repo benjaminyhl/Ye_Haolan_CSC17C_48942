@@ -180,22 +180,28 @@ void LnkList<T>::insertAfter(T n,T a) {
 //delete a node that contains value n
 template <class T>
 void LnkList<T>::extr(T n) {
-    List *node;
-    List *preNode;//previous node
+    List *node=head;
+    List *temp;//next node
     if(head==nullptr) return;
-    
-    node=head;
-    //loop until node is null or the value n
-    while(node!=nullptr) {
-        preNode=node;
-        if(node->next==nullptr) break;
-        node=node->next;
-        if(node->value==n) {
-            preNode->next=node->next;
-            delete node;
+    while(node->next!=nullptr) {
+        if(node->next->value==n) {
+            temp=node->next;
+            node->next=temp->next;
+            delete temp;
             size--;
+        } else {
+            node=node->next;
         }
+        
     }
+    if(head->value==n) {
+        node=node->next;
+        delete head;
+        head=node;
+        size--;
+    } 
+    
+    
 //        do {
 //            preNode=node;
 //            node=node->next;
