@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
     //insert number 200 before number 4
     cout<<"In b list, insert 200 before 4..."<<endl;
     b.insertBefore(200,4);
-    
+    b.append(50000);
     cout<<"Linked List B: "<<endl;
     b.dspList();
 

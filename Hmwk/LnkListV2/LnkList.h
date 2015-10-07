@@ -50,11 +50,6 @@ LnkList<T>::LnkList(const LnkList &lnk) {
 //    List *temp;//Temp int
 //    this->size=lnk.size;
 //    //cout<<"New List size: "<<size<<endl;
-//    
-//    
-//    //Use append function
-//    
-//    
 //    if(size==0) head=nullptr;
 //    else {
 //        //connect all the node together
@@ -74,6 +69,7 @@ LnkList<T>::LnkList(const LnkList &lnk) {
 //            node2=node2->next;
 //        }
 //    }
+    //New version for copy constructor using append function
     if(lnk.head==nullptr) head=nullptr;
     else {
         head=nullptr;
