@@ -33,14 +33,20 @@ class CirList {
         
 };
 
+
+//Something wrong here
 template <class T>
 CirList<T>::CirList(int n) {
+    cout<<"@@@"<<endl;
     if(n<1) {
         head=nullptr;
         rear=nullptr;
     } else {
-        for(int i=0;i<n;i++)
+        cout<<"!!!!"<<endl;
+        for(int i=0;i<n;i++) {
+            cout<<endl<<i<<endl;
             append(0);
+        }
     }
 }
 
@@ -56,10 +62,16 @@ void CirList<T>::append(T n) {
     if(head==nullptr) {
         head=newNode;
         rear=newNode;
+        head->next=rear;
+        rear->next=head;
+        rear->prev=head;
+        head->prev=rear;
     } else {
         newNode->prev=rear;
+        newNode->next=head;
         rear->next=newNode;
         rear=newNode;
+        head->prev=rear;
     }    
     size++;
 }
@@ -75,10 +87,16 @@ void CirList<T>::prepend(T n) {
     if(head==nullptr) {
         head=newNode;
         rear=newNode;
+        head->next=rear;
+        rear->next=head;
+        rear->prev=head;
+        head->prev=rear;
     } else {
         newNode->next=head;
+        newNode->prev=rear;
         head->prev=newNode;
         head=newNode;
+        rear->next=head;
     }
     size++;
 }
@@ -87,14 +105,10 @@ template <class T>
 void CirList<T>::pop() {
     if(head==nullptr) return;
     else {
-        List *pre;
-        List *node=head;
-        while(node->next) {
-            pre=node;
-            node=node->next;
-        }
-        rear=pre;
-        pre->next=nullptr;
+        List *node=rear;
+        rear->prev->next=head;
+        head->prev=rear->prev;
+        rear=rear->prev;
         delete []node;
         size--;
     }
@@ -104,7 +118,7 @@ template <class T>
 void CirList<T>::dspList() const {
     List *node=head;
     //output the Linked List
-    while(node) {
+    for(int i=0;i<2*size;i++) {
         cout<<node->value<<endl;
         node=node->next;
     }
@@ -113,7 +127,7 @@ void CirList<T>::dspList() const {
 template <class T>
 void CirList<T>::revDsp() const {
     List *node=rear;
-    while(node) {
+    for(int i=0;i<2*size;i++) {
         cout<<node->value<<endl;
         node=node->prev;
     }
