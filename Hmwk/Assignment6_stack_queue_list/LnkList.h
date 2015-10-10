@@ -68,30 +68,6 @@ void LnkList<T>::pop() {
 //Copy Constructor
 template <class T>
 LnkList<T>::LnkList(const LnkList &lnk) {
-//    List *node1;//node for new Linked List
-//    List *node2;//node For old Linked List
-//    List *temp;//Temp int
-//    this->size=lnk.size;
-//    //cout<<"New List size: "<<size<<endl;
-//    if(size==0) head=nullptr;
-//    else {
-//        //connect all the node together
-//        head=new List;
-//        head->next=nullptr;
-//        temp=head;
-//        for(int i=0;i<size-1;i++) {
-//            temp->next=new List;
-//            temp=temp->next;
-//        }
-//        node1=head;
-//        node2=lnk.head;
-//        //fill the list
-//        for(int i=0;i<size;i++) {
-//            node1->value=node2->value;
-//            node1=node1->next;
-//            node2=node2->next;
-//        }
-//    }
     //New version for copy constructor using append function
     if(lnk.head==nullptr) head=nullptr;
     else {

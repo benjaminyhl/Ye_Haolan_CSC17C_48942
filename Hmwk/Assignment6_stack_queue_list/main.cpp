@@ -20,13 +20,15 @@ int main(int argc, char** argv) {
 //    y.append(1000);
 //    y.append(2);
 //    y.dspList();
-    DbList<int> a(5);
+    DbList<int> a;
     a.append(10);
     a.append(100);
     a.prepend(421);
     a.pop();
     a.append(10000);
     a.dspList();
+    cout<<"\nReversely display the List: \n";
+    a.revDsp();
     return 0;
 }
 

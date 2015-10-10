@@ -23,7 +23,7 @@ class DbList {
         List *rear;
         int size;
     public:
-        DbList() {head=nullptr;size=0;}
+        DbList() {head=nullptr;rear=nullptr;size=0;}
         DbList(int);
         void append(T);
         void prepend(T);
@@ -35,8 +35,10 @@ class DbList {
 
 template <class T>
 DbList<T>::DbList(int n) {
-    if(n<1) head=nullptr;
-    else {
+    if(n<1) {
+        head=nullptr;
+        rear=nullptr;
+    } else {
         for(int i=0;i<n;i++)
             append(0);
     }
@@ -56,12 +58,8 @@ void DbList<T>::append(T n) {
         head=newNode;
         rear=newNode;
     } else {
-        node=head;
-        //loop to the last node
-        while(node->next)
-            node=node->next;
-        node->next=newNode;
-        newNode->prev=node;
+        newNode->prev=rear;
+        rear->next=newNode;
         rear=newNode;
     }    
     size++;
@@ -75,8 +73,10 @@ void DbList<T>::prepend(T n) {
     newNode->value=n;
     newNode->next=nullptr;
     newNode->prev=nullptr;
-    if(head==nullptr) head=newNode;
-    else {
+    if(head==nullptr) {
+        head=newNode;
+        rear=newNode;
+    } else {
         newNode->next=head;
         head->prev=newNode;
         head=newNode;
@@ -114,6 +114,10 @@ void DbList<T>::dspList() const {
 template <class T>
 void DbList<T>::revDsp() const {
     List *node=rear;
+    while(node) {
+        cout<<node->value<<endl;
+        node=node->prev;
+    }
 }
 
 #endif	/* DBLIST_H */
