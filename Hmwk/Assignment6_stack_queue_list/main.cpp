@@ -9,9 +9,16 @@
 using namespace std;
 
 #include "DbList.h"
-#include "Stack.h"
+#include "Stack_Queue.h"
 #include "CirList.h"
+#include "PrioList.h" 
 int main(int argc, char** argv) {
+    //Development:
+    
+    //Queue append
+    //Circlar linked list int constrctor
+    
+    
 //    Stack<int> x;
 //    x.append(10);
 //    x.append(1000);
@@ -23,7 +30,7 @@ int main(int argc, char** argv) {
 //    y.dspList();
     
     //Check doubly linked list
-//    DbList<int> a;
+//    DbList<int> a(2);
 //    a.append(10);
 //    a.append(100);
 //    a.prepend(421);
@@ -34,17 +41,25 @@ int main(int argc, char** argv) {
 //    a.revDsp();
     
     //Check circular linked list
-    CirList<int> ab;
-    ab.append(10);
-    ab.prepend(45);
-    ab.append(1000);
-    ab.pop();
-    cout<<"In order: "<<endl;
-    ab.dspList();
-    cout<<endl<<"Reversely output: "<<endl;
-    ab.revDsp();
+//    CirList<int> ab(1);
+//    ab.append(10);
+//    ab.prepend(45);
+//    ab.append(1000);
+//    ab.pop();
+//    cout<<"In order: "<<endl;
+//    ab.dspList();
+//    cout<<endl<<"Reversely output: "<<endl;
+//    ab.revDsp();
     
-    
+    //Test Priority Linked List
+//    PrioList<int> a;
+//    a.append(100);
+//    a.append(4);
+//    a.append(212);
+//    a.dspList();
+//    cout<<endl;
+//    a.find(231);
+//    a.dspList();
     return 0;
 }
 

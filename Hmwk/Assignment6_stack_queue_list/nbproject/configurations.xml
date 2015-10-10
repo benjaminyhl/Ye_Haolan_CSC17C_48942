@@ -7,7 +7,9 @@
       <itemPath>CirList.h</itemPath>
       <itemPath>DbList.h</itemPath>
       <itemPath>LnkList.h</itemPath>
-      <itemPath>Stack.h</itemPath>
+      <itemPath>PrioList.h</itemPath>
+      <itemPath>PrioQueue.h</itemPath>
+      <itemPath>Stack_Queue.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -46,7 +48,11 @@
       </item>
       <item path="LnkList.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Stack.h" ex="false" tool="3" flavor2="0">
+      <item path="PrioList.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PrioQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Stack_Queue.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -77,7 +83,11 @@
       </item>
       <item path="LnkList.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Stack.h" ex="false" tool="3" flavor2="0">
+      <item path="PrioList.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PrioQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Stack_Queue.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -38,6 +38,7 @@ DbList<T>::DbList(int n) {
     if(n<1) {
         head=nullptr;
         rear=nullptr;
+        size=0;
     } else {
         for(int i=0;i<n;i++)
             append(0);

@@ -37,14 +37,12 @@ class CirList {
 //Something wrong here
 template <class T>
 CirList<T>::CirList(int n) {
-    cout<<"@@@"<<endl;
     if(n<1) {
         head=nullptr;
         rear=nullptr;
+        size=0;
     } else {
-        cout<<"!!!!"<<endl;
         for(int i=0;i<n;i++) {
-            cout<<endl<<i<<endl;
             append(0);
         }
     }
