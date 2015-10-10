@@ -23,23 +23,18 @@ class Queue: public LnkList<T> {
     public:
         Queue():LnkList<T>() {};
         Queue(int size):LnkList<T>(size) {};
-        void append(T n);
+        void pop();
 };
 
 template <class T>
-void Queue<T>::append(T n) {
-//    List *newNode;//node needed to push
-//    newNode=new List;
-//    //set the new node
-//    newNode->value=n;
-//    newNode->next=nullptr;
-//    //when head is null
-//    if(!head) head=newNode;
-//    else {
-//        newNode->next=head;
-//        head=newNode;
-//    }
-//    size++;
+void Queue<T>::pop() {
+    if(LnkList<T>::head==nullptr) return;
+    else {
+        LnkList<T>::temp=LnkList<T>::head;
+        LnkList<T>::head=LnkList<T>::head->next;
+        delete LnkList<T>::temp;
+        LnkList<T>::size--;
+    }
 }
 #endif	/* STACK_H */
 

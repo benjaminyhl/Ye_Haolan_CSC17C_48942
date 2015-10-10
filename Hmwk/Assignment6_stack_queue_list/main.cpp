@@ -12,13 +12,8 @@ using namespace std;
 #include "Stack_Queue.h"
 #include "CirList.h"
 #include "PrioList.h" 
+#include "PrioQueue.h"
 int main(int argc, char** argv) {
-    //Development:
-    
-    //Queue append
-    //Circlar linked list int constrctor
-    
-    
 //    Stack<int> x;
 //    x.append(10);
 //    x.append(1000);
@@ -28,6 +23,17 @@ int main(int argc, char** argv) {
 //    y.append(1000);
 //    y.append(2);
 //    y.dspList();
+    
+   //Check Queue
+//    Queue<int> qu;
+//    qu.append(10);
+//    qu.prepend(1);
+//    qu.append(100);
+//    qu.dspList();
+//    cout<<endl;
+//    qu.pop();
+//    qu.dspList();
+    
     
     //Check doubly linked list
 //    DbList<int> a(2);
@@ -60,6 +66,20 @@ int main(int argc, char** argv) {
 //    cout<<endl;
 //    a.find(231);
 //    a.dspList();
+    
+    //Check Priority queue
+//    PrioQueue<int> pq;
+//    pq.append(1);
+//    pq.append(200);
+//    pq.prepend(32);
+//    pq.append(43);
+//    pq.dspList();
+//    cout<<endl;
+//    pq.pop();
+//    pq.dspList();
+//    cout<<endl;
+//    pq.find(43);
+//    pq.dspList();
     return 0;
 }
 

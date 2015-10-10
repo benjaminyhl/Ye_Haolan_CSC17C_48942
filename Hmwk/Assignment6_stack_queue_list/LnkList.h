@@ -18,6 +18,7 @@ class LnkList {
             struct List *next;
         };
         List *head;
+        List *temp;
         int size;
     public:
         //Constructor

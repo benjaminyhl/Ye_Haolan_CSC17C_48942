@@ -37,12 +37,11 @@ class CirList {
 //Something wrong here
 template <class T>
 CirList<T>::CirList(int n) {
-    if(n<1) {
-        head=nullptr;
-        rear=nullptr;
-        size=0;
-    } else {
-        for(int i=0;i<n;i++) {
+    head=nullptr;
+    rear=nullptr;
+    size=0;
+    if(n>=1) {
+        for(int i=0;i<n-1;i++) {
             append(0);
         }
     }

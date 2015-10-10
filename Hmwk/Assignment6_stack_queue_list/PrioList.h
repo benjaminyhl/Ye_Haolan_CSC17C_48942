@@ -19,6 +19,7 @@ class PrioList {
             struct List *next;
         };
         List *head;
+        List *temp;
         int size;
     public:
         //Constructor
