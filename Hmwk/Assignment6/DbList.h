@@ -1,7 +1,6 @@
 /* 
  * File:   dbList.h
  * Author: Haolan Ye (Benjamin)
- *
  * Created on October 8, 2015, 9:17 AM
  */
 

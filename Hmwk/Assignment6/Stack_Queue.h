@@ -1,7 +1,6 @@
 /* 
  * File:   Stack.h
- * Author: admin
- *
+ * Author: Haolan Ye (Benjamin)
  * Created on October 7, 2015, 10:26 AM
  */
 

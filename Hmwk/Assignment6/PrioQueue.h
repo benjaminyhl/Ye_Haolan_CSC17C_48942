@@ -1,7 +1,6 @@
 /* 
  * File:   PrioQueue.h
- * Author: admin
- *
+ * Author: Haolan Ye (Benjamin)
  * Created on October 10, 2015, 1:34 PM
  */
 

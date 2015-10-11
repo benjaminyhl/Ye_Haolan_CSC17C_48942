@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=assignment6_stack_queue_list
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/assignment6_stack_queue_list
+CND_ARTIFACT_NAME_Debug=matrix_calculator
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/matrix_calculator
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=assignment6stackqueuelist.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/assignment6stackqueuelist.tar
+CND_PACKAGE_NAME_Debug=matrixcalculator.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/matrixcalculator.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=assignment6_stack_queue_list
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/assignment6_stack_queue_list
+CND_ARTIFACT_NAME_Release=matrix_calculator
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/matrix_calculator
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=assignment6stackqueuelist.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/assignment6stackqueuelist.tar
+CND_PACKAGE_NAME_Release=matrixcalculator.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/matrixcalculator.tar
 #
 # include compiler specific variables
 #

@@ -1,7 +1,6 @@
 /* 
  * File:   CirList.h
- * Author: admin
- *
+ * Author: Haolan Ye (Benjamin)
  * Created on October 10, 2015, 12:12 AM
  */
 

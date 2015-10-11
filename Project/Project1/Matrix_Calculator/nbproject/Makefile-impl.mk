@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Assignment6_stack_queue_list
+PROJECTNAME=Matrix_Calculator
 
 # Active Configuration
 DEFAULTCONF=Debug
