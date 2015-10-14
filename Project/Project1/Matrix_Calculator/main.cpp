@@ -10,7 +10,49 @@ using namespace std;
 
 
 int main(int argc, char** argv) {
+    cout<<"****WELCOME TO MATRIX CALCULATOR****"<<endl;
+    cout<<endl<<endl<<"***********     Menu     ***********"<<endl<<endl;
+    cout<<"1. Add a matrix"<<endl;
+    cout<<"2. Determinant"<<endl;
+    cout<<"3. Transpose"<<endl;
+    cout<<"4. Inverse"<<endl;
+    cout<<"5. Multiply by a number"<<endl;
+    cout<<"6. Multiply by a matrix"<<endl;
+    cout<<"7. Exit"<<endl;
     
+    //Add a matrix
+    int row=2,col=3;//row and column
+    string name;//name of the matrix
+    //create a linked list to store the matrix
+    int **array;//2-d array of matrix
+    
+    //create rows
+    array=new int*[row];
+    //create columns
+    for(int i=0;i<col;i++) {
+        array[i]=new int[col];
+    }
+    
+    //Get the elements of matrix
+    for(int i=0;i<row;i++) {
+        for(int j=0;j<col;j++) {
+            cin>>array[i][j];
+        }
+    }
+    
+    //output test
+    for(int i=0;i<row;i++) {
+        for(int j=0;j<col;j++) {
+            cout<<array[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    
+    //deallocate memory
+    for(int i=0;i<col;i++) {
+        delete []array[i];
+    }
+    delete []array;
     return 0;
 }
 
