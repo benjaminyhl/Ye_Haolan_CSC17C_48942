@@ -21,9 +21,9 @@ class Matrix {
         string name;
     public:
         Matrix();
-        Matrix(int,int,string);
+        Matrix(int,int,int **,string);
         ~Matrix();
-        
+        void display() const;
 };
 
 #endif	/* MATRIX_H */

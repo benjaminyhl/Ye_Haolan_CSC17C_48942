@@ -8,6 +8,7 @@
 #include <iostream>
 using namespace std;
 
+#include "Matrix.h"
 
 int main(int argc, char** argv) {
     cout<<"****WELCOME TO MATRIX CALCULATOR****"<<endl;
@@ -21,15 +22,16 @@ int main(int argc, char** argv) {
     cout<<"7. Exit"<<endl;
     
     //Add a matrix
-    int row=2,col=3;//row and column
-    string name;//name of the matrix
+    int row,col;//row and column
+    string name="aaa";//name of the matrix
     //create a linked list to store the matrix
     int **array;//2-d array of matrix
-    
+    cout<<"Row and Column of matrix: "<<endl;
+    cin>>row>>col;
     //create rows
     array=new int*[row];
     //create columns
-    for(int i=0;i<col;i++) {
+    for(int i=0;i<row;i++) {
         array[i]=new int[col];
     }
     
@@ -40,19 +42,8 @@ int main(int argc, char** argv) {
         }
     }
     
-    //output test
-    for(int i=0;i<row;i++) {
-        for(int j=0;j<col;j++) {
-            cout<<array[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-    
-    //deallocate memory
-    for(int i=0;i<col;i++) {
-        delete []array[i];
-    }
-    delete []array;
+    Matrix m(row,col,array,name);
+    m.display();
     return 0;
 }
 
