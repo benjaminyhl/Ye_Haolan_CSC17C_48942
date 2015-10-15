@@ -1,7 +1,6 @@
 /* 
  * File:   Matrix.h
- * Author: admin
- *
+ * Author: Haolan Ye (Benjamin)
  * Created on October 14, 2015, 3:22 PM
  */
 
@@ -20,9 +19,24 @@ class Matrix {
         int **array;
         string name;
     public:
-        Matrix();
+        Matrix() {row=col=0;array=0;name="";}
+        Matrix(const Matrix &);
         Matrix(int,int,int **,string);
         ~Matrix();
+        void addMatrix(Matrix);         //done
+        void subtract(Matrix);         //done
+        void multiByNum(int);           //done
+        void multiByMat(Matrix);//multiply by a matrix
+        void transpose();
+        void determinent();
+        void inverse();
+        int getRow() const {return row;}
+        int getCol() const {return col;}
+        string getName() const {return name;}
+        void setRow(int r) {row=r;}
+        void setCol(int c) {col=c;}
+        void setArray(int **a) {array=a;}
+        void setName(string n) {name=n;}
         void display() const;
 };
 
