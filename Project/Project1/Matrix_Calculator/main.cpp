@@ -36,6 +36,9 @@ int main(int argc, char** argv) {
     //Test for add 2 matrix
     m.transpose();
     
+    //Test for matrix multiplication
+    Matrix n(m);
+    m.multiByMat(n);
     
     
     return 0;

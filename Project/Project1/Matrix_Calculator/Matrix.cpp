@@ -116,3 +116,37 @@ void Matrix::transpose() {
             cout<<endl;
     }
 }
+
+void Matrix::multiByMat(Matrix o) {
+    if(this->col!=o.getRow()) return;
+    else {
+        int **a;//2-d array of matrix
+        //create rows
+        a=new int*[this->row];
+        //create columns
+        for(int i=0;i<this->row;i++) {
+            a[i]=new int[o.col];
+        }
+        for(int i=0;i<this->row;i++) {
+            for(int j=0;j<o.col;j++) {
+                a[i][j]=0;
+                for(int k=0;k<this->col;k++) {
+                    a[i][j]+=array[i][k]*o.array[k][j];//keep doing
+                }
+            }
+        }
+        Matrix r(row,col,a,"");
+        r.display();
+    }
+}
+
+void Matrix::determinent() {
+    if(col!=row) return;
+    else {
+        
+    }
+}
+
+void Matrix::inverse() {
+    
+}

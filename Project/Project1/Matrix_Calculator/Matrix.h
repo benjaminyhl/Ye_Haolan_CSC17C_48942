@@ -27,9 +27,10 @@ class Matrix {
         void subtract(Matrix);         //done
         void multiByNum(int);           //done
         void multiByMat(Matrix);//multiply by a matrix
-        void transpose();
+        void transpose();               //done
         void determinent();
         void inverse();
+        void reduce_echelon();
         int getRow() const {return row;}
         int getCol() const {return col;}
         string getName() const {return name;}
