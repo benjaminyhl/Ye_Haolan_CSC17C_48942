@@ -28,7 +28,8 @@ class Matrix {
         void multiByNum(int);           //done
         void multiByMat(Matrix);//multiply by a matrix
         void transpose();               //done
-        void determinent();
+        void determinant();
+        int determinant(int**,int);
         void inverse();
         void reduce_echelon();
         int getRow() const {return row;}

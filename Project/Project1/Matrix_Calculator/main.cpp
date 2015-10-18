@@ -39,7 +39,8 @@ int main(int argc, char** argv) {
     //Test for matrix multiplication
     Matrix n(m);
     m.multiByMat(n);
-    
+    cout<<endl<<endl;
+    m.determinant();
     
     return 0;
 }
