@@ -37,8 +37,8 @@ int main(int argc, char** argv) {
     m.transpose();
     
     //Test for matrix multiplication
-    Matrix n(m);
-    m.multiByMat(n);
+//    Matrix n(m);
+//    m.multiByMat(n);
     cout<<endl<<endl;
     m.determinant();
     

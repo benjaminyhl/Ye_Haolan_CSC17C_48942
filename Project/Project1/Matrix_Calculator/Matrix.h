@@ -18,6 +18,7 @@ class Matrix {
         int col;
         int **array;
         string name;
+        int determinant(int**,int);
     public:
         Matrix() {row=col=0;array=0;name="";}
         Matrix(const Matrix &);
@@ -29,7 +30,7 @@ class Matrix {
         void multiByMat(Matrix);//multiply by a matrix
         void transpose();               //done
         void determinant();
-        int determinant(int**,int);
+        
         void inverse();
         void reduce_echelon();
         int getRow() const {return row;}
