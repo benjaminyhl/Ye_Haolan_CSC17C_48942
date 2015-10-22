@@ -220,14 +220,14 @@ int Matrix::determinant(int **a,int n) {
         int det=0;
         int c=0,
             r=0;
-        for(int i=0;i<tRow;i++) {
+        for(int i=0;i<n;i++) {
             c=r=0;
-            for(int j=1;j<tRow;j++) {
-                for(int k=0;k<tCol;k++) {
+            for(int j=1;j<n;j++) {
+                for(int k=0;k<n;k++) {
                     if(k==i) continue;
                     temp[c][r]=a[j][k];
                     r++;
-                    if(r==(row-1)) {
+                    if(r==(n-1)) {
                         c++;
                         r=0;
                     }
