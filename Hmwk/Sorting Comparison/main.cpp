@@ -4,18 +4,18 @@
 #include <cmath>
 using namespace std;
  
-void quickSort(int [], int, int);
-int pivot(int [], int, int);
-void swap(int&, int&);
-void print(int [], const int&);
+void quickSort(int [],int,int);
+int pivot(int [],int,int);
+void swap(int&,int&);
+void print(int [],const int&);
 void merge(int*,int,const int, const int);
 void merge_sort(int*, const int, const int);
-void heapsort(int [], int);
-void buildheap(int [], int);
-void heapify(int [], int, int);
+void heapsort(int [],int);
+void buildheap(int [],int);
+void heapify(int [],int,int);
  
 int main(){
-    int test[] = { 7, -13, 1, 3, 10, 5, 2, 4 };
+    int test[] = { 7,-13,1,3,10,5,2,4};
     int N = sizeof(test)/sizeof(int);
  
     cout << "Size of test array :"  << N << endl;
@@ -39,7 +39,7 @@ int main(){
  * @param first - The start of the sequence to be sorted.
  * @param last - The end of the sequence to be sorted.
 */
-void quickSort( int a[], int first, int last ) {
+void quickSort(int a[], int first, int last ) {
     int pivotElement;
  
     if(first < last) {
@@ -98,8 +98,8 @@ void print(int a[], const int& N){
 void merge(int* A,int p,const int q, const int r){
     const int n_1=q-p+1;
     const int n_2=r-q;
-    int* L = new int [n_1+1];
-    int* R = new int [n_2+1];
+    int* L = new int[n_1+1];
+    int* R = new int[n_2+1];
     L[n_1]=0;
     R[n_2]=0;
     for(int i = 0; i < n_1; i++) 
@@ -167,8 +167,7 @@ void heapify(int A[], int heapsize, int root) {
 	if ( (right < heapsize) && (A[right] > A[largest]))
 		largest = right;
 		
-	if (largest != root)
-	{
+	if (largest != root) {
 		swap(A[root], A[largest]);
 		heapify(A, heapsize, largest);
 	}

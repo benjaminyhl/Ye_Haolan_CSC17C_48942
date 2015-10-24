@@ -15,21 +15,22 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+    //set seeds for random numbers
     srand(static_cast<unsigned int>(time(0)));
-    int n=100;
+    int n=100;//number of elements
     int pl=10;//per line
     vector<int> vec;
     set<int> s;
-    set<int>::iterator pos;
+    set<int>::iterator pos;//iterator for set
     int temp;
-    float ave=0;
-    float median=0;
+    float ave=0;//average
+    float median=0;//median
     
     //insert and output random 2-digit number into vector
     //insert these number to the set
     cout<<"Here are "<<n<<" integers: "<<endl;
     for(int i=0;i<n;i++) {
-        temp=rand()%90+10;
+        temp=rand()%+10;
 //        temp=rand()%10;
         cout<<temp<<" ";
         if(i%pl==(pl-1)) cout<<endl;
@@ -63,14 +64,16 @@ int main(int argc, char** argv) {
         cout<<vec[i]<<" ";
         if(i%pl==(pl-1)) cout<<endl;
     }
-    cout<<endl;
-    
+    cout<<endl<<endl;
     
     set<int> mode;
     int times=0;
+    //Output the frequency
+    cout<<"Frequency"<<endl;
     cout<<"Key   Value"<<endl;
     for(pos=s.begin();pos!=s.end();pos++) {
         cout<<*pos<<"     "<<m[*pos]<<endl;
+        //Get the mode from the map
         if(m[*pos]>times) {
             mode.clear();
             mode.insert(*pos);
@@ -81,7 +84,7 @@ int main(int argc, char** argv) {
         } 
     }
     
-    
+    //Output the result
     cout<<"Average: "<<ave<<endl;
     cout<<"Median: "<<median<<endl;
     cout<<"Mode: ";
