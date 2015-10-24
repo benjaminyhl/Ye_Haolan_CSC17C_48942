@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     for(int row=1;row<=nRows;row++) {
         for(int col=1;col<=row;col++) {
             cout<<coeff(row,col,nCalls)<<" ";
-        }
+}
         cout<<endl;
     }
     cout<<"Number of Call: "<<nCalls<<endl;
