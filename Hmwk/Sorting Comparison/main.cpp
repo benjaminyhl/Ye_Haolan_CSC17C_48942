@@ -43,7 +43,7 @@ int main(){
         lsa,//Total number of add/sub operations
         add;//Total number of addressing operations
     srand(static_cast<unsigned int>(time(0)));
-    cout<<"*********Quick Sort*********\n\n";
+    cout<<"*********Quick Sort-----O( n * lgn )*********\n\n";
     for(int i=0;i<4;i++) {
         size=10*pow(2,i);
         int *test=fillAry(size);
@@ -70,7 +70,7 @@ int main(){
         delete []test;
     }
     
-    cout<<"\n*********Merge Sort*********\n\n";
+    cout<<"\n*********Merge Sort-----O( n * lgn )*********\n\n";
     for(int i=0;i<4;i++) {
         size=10*pow(2,i);
         int *test=fillAry(size);
@@ -98,7 +98,7 @@ int main(){
     }
     
     
-        cout<<"\n*********Heap Sort*********\n\n";
+        cout<<"\n*********Heap Sort-----O( n * lgn )*********\n\n";
     for(int i=0;i<4;i++) {
         size=10*pow(2,i);
         int *test=fillAry(size);
@@ -125,7 +125,7 @@ int main(){
         delete []test;
     }
         
-    cout<<"\n*********Bubble Sort*********\n\n";
+    cout<<"\n*********Bubble Sort-----O( n^2 )*********\n\n";
     for(int i=0;i<4;i++) {
         size=10*pow(2,i);
         int *test=fillAry(size);
@@ -152,7 +152,7 @@ int main(){
         delete []test;
     }  
     
-    cout<<"\n*********Selection Sort*********\n\n";
+    cout<<"\n*********Selection Sort-----O( n^2 )*********\n\n";
     for(int i=0;i<4;i++) {
         size=10*pow(2,i);
         int *test=fillAry(size);
