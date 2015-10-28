@@ -34,6 +34,16 @@ Matrix::Matrix(const Matrix &o) {
     } 
 }
 
+//Destructor
+Matrix::~Matrix() {
+    cout<<"Matrix destructor"<<endl;
+    //deallocate memory
+    for(int i=0;i<row;i++) {
+        delete []array[i];
+    }
+    delete []array;
+}
+
 //Display the matrix
 void Matrix::display() const{
     //output the matrix
@@ -46,31 +56,7 @@ void Matrix::display() const{
     cout<<endl<<endl;
 }
 
-//Destructor
-Matrix::~Matrix() {
-    //deallocate memory
-    for(int i=0;i<row;i++) {
-        delete []array[i];
-    }
-    delete []array;
-}
-
-
 void Matrix::multiByNum(int n) {
-//    int **a;//2-d array of matrix
-//    //create rows
-//    a=new int*[row];
-//    //create columns
-//    for(int i=0;i<row;i++) {
-//        a[i]=new int[col];
-//    }
-//    for(int i=0;i<row;i++) {
-//        for(int j=0;j<col;j++) {
-//            a[i][j]=n*array[i][j];
-//        }
-//    }
-//    Matrix r(row,col,a,"");
-//    r.display();
     cout<<"The result of multiplying by "<<n<<":"<<endl;
     for(int i=0;i<row;i++) {
         for(int j=0;j<col;j++) {
@@ -147,7 +133,6 @@ void Matrix::multiByMat(Matrix o) {
 
 void Matrix::determinant() {
     int d=0;
-    int t;//temp int
     if(col!=row||col<1||row<1) {
         return;
     } else if(col==1&&col==1) {

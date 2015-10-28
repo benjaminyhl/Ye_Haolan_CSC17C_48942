@@ -20,6 +20,7 @@ int main(int argc, char** argv) {
     a.append(10);
     a.prepend(100);
     a.insertAfter(8,4);
+    cout<<a[0]<<endl;
     //output the list after appending
     cout<<"After appending..."<<endl;
     cout<<"Linked List A: "<<endl;

@@ -17,7 +17,7 @@ using namespace std;
 int main(int argc, char** argv) {
     //set seeds for random numbers
     srand(static_cast<unsigned int>(time(0)));
-    int n=100;//number of elements
+    int n=50;//number of elements
     int pl=10;//per line
     vector<int> vec;
     set<int> s;
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     int temp;
     float ave=0;//average
     float median=0;//median
-    
+    map<int,int> m;
     //insert and output random 2-digit number into vector
     //insert these number to the set
     cout<<"Here are "<<n<<" integers: "<<endl;
@@ -36,18 +36,13 @@ int main(int argc, char** argv) {
         if(i%pl==(pl-1)) cout<<endl;
         ave+=temp;
         vec.push_back(temp);
-        s.insert(temp);
+        //when inserting to set successfully, put the elements in sets and set value to 0
+        if(s.insert(temp).second) m.insert(pair<int, int>(vec[i], 0));
     }
     cout<<endl<<endl;
     //sort the vector
     sort(vec.begin(),vec.end());
-    
-    //create a map and let the elements in sets be the keys of map
-    map<int,int> m;
-    for(pos=s.begin();pos!=s.end();++pos) {
-        m[*pos]=0;
-    }
-    
+   
     //get the average
     ave/=n;
     //Get the median
@@ -71,6 +66,7 @@ int main(int argc, char** argv) {
     //Output the frequency
     cout<<"Frequency"<<endl;
     cout<<"Key   Value"<<endl;
+    int ones=0;
     for(pos=s.begin();pos!=s.end();pos++) {
         cout<<*pos<<"     "<<m[*pos]<<endl;
         //Get the mode from the map
@@ -81,15 +77,22 @@ int main(int argc, char** argv) {
         } 
         if(m[*pos]==times) {
             mode.insert(*pos);
-        } 
+        }
+        if(m[*pos]==1) {
+            ones++;
+        }
     }
     
     //Output the result
     cout<<"Average: "<<ave<<endl;
     cout<<"Median: "<<median<<endl;
-    cout<<"Mode: ";
-    for(pos=mode.begin();pos!=mode.end();++pos) {
-        cout<<*pos<<"  ";
+    if(ones==s.size()) {
+        cout<<"There is no mode"<<endl;
+    } else {
+        cout<<"Mode: ";
+        for(pos=mode.begin();pos!=mode.end();++pos) {
+            cout<<*pos<<"  ";
+        }
     }
     cout<<endl;
     return 0;

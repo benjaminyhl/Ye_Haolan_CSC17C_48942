@@ -9,7 +9,7 @@
 using namespace std;
 
 #include "Matrix.h"
-
+#include "LnkList.h"
 
 void menu();
 int **getArray(int &,int &);
@@ -18,15 +18,17 @@ int **getArray(int &,int &);
 int main(int argc, char** argv) {
     menu();
     
+    LnkList<Matrix> a;
     //Add a matrix
     int row,col;//row and column
     string name="aaa";//name of the matrix
     //create a linked list to store the matrix
     int **array=getArray(row,col);//2-d array of matrix
     Matrix m(row,col,array,name);
+    a.append(m);
     cout<<endl<<endl<<"Here is your matrix:"<<endl;
     m.display();
-    
+//    a[0].display();
     //Multiply by a number
 //    cout<<"Multiply by: ";
 //    int num;
@@ -35,13 +37,13 @@ int main(int argc, char** argv) {
     
     //Test for add 2 matrix
     m.transpose();
-    
+//    a[0].transpose();
     //Test for matrix multiplication
 //    Matrix n(m);
 //    m.multiByMat(n);
     cout<<endl<<endl;
     m.determinant();
-    
+//    a[0].determinant();
     return 0;
 }
 

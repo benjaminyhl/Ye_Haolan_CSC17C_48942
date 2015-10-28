@@ -16,16 +16,16 @@ void prntAry(int *,int,int);
 int rmax(int *,int,int);
 
 int main(int argc, char** argv) {
-//    for(float rad=-1;rad<=1;rad+=0.1) {
-//        cout<<"Percentage error in recursion tangent = "<<(tan(rad)-rtan(rad))/tan(rad)*100<<endl;
-//    }
+    for(float rad=-1;rad<=1;rad+=0.1) {
+        cout<<"Percentage error in recursion tangent = "<<(tan(rad)-rtan(rad))/tan(rad)*100<<endl;
+    }
     srand(static_cast<unsigned int>(time(0)));
-    int size=100;
-    int perline=10;
-    int *a=fill(size);
-    prntAry(a,100,perline);
-    cout<<"The max number is "<<rmax(a,0,size)<<endl;
-    delete []a;
+//    int size=100;
+//    int perline=10;
+//    int *a=fill(size);
+//    prntAry(a,100,perline);
+//    cout<<"The max number is "<<rmax(a,0,size)<<endl;
+//    delete []a;
     
     return 0;
 }
