@@ -45,6 +45,8 @@ class MyVector {
        T &operator[](const int &);
        void push(T);
        void pull();
+       void clear();
+       void sort();
 };
 
 template <class T>
@@ -69,7 +71,7 @@ MyVector<T>::MyVector(int s) {
    
    // Initialize the array.
    for (int count=0;count<actSize;count++)
-      *(aptr + count) = 0;
+      aptr[count] = 0;
 }
 
 
@@ -86,15 +88,38 @@ MyVector<T>::MyVector(const MyVector &obj) {
       
    // Copy the elements of object's array.
    for(int count = 0; count < obj.usdSize; count++)
-      *(aptr + count) = *(obj.aptr + count);
+      aptr[count]= obj.aptr[count];
    for(int i=usdSize;i<actSize;i++)
-       *(aptr+i)=0;
+       aptr[i]=0;
 }   
 
 // Destructor
 template <class T>
 MyVector<T>::~MyVector() {
     delete []aptr;
+}
+
+//Sort
+template <class T>
+void MyVector<T>::sort() {
+    for(int i=0;i<usdSize-1;i++) {
+        for(int j=i+1;j<usdSize;j++) {
+            if(aptr[i]>aptr[j]) {
+                T temp=aptr[i];
+                aptr[i]=aptr[j];
+                aptr[j]=temp;
+            }
+        }
+    }
+}
+
+//Clear
+template <class T>
+void MyVector<T>::clear() {
+    for(int i=0;i<usdSize;i++) {
+        aptr[i]=0;
+    }
+    usdSize=0;
 }
 
 //push function
@@ -105,7 +130,7 @@ void MyVector<T>::push(T o) {
         T *arr=new T[actSize];
         if(arr==0) memError();
         for(int i=0;i<usdSize;i++) {
-            *(arr+i)=*(aptr+i);
+            arr[i]=aptr[i];
         }
         for(int i=usdSize;i<actSize;i++) {
             arr[i]=0;
@@ -115,7 +140,7 @@ void MyVector<T>::push(T o) {
         delete []aptr;
         aptr=arr;
     } else {
-       *(aptr+usdSize)=o;
+       aptr[usdSize]=o;
        usdSize++;
     }
 }

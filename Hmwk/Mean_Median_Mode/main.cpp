@@ -30,14 +30,14 @@ int main(int argc, char** argv) {
     //insert these number to the set
     cout<<"Here are "<<n<<" integers: "<<endl;
     for(int i=0;i<n;i++) {
-        temp=rand()%+10;
+        temp=rand()%10;
 //        temp=rand()%10;
         cout<<temp<<" ";
         if(i%pl==(pl-1)) cout<<endl;
         ave+=temp;
         vec.push_back(temp);
         //when inserting to set successfully, put the elements in sets and set value to 0
-        if(s.insert(temp).second) m.insert(pair<int, int>(vec[i], 0));
+        if(s.insert(temp).second) m.insert(pair<int, int>(temp, 0));
     }
     cout<<endl<<endl;
     //sort the vector
