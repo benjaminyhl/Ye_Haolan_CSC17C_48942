@@ -36,12 +36,13 @@ Matrix::Matrix(const Matrix &o) {
 
 //Destructor
 Matrix::~Matrix() {
-    cout<<"Matrix destructor"<<endl;
+    
     //deallocate memory
     for(int i=0;i<row;i++) {
         delete []array[i];
     }
     delete []array;
+    cout<<"Matrix destructor"<<endl;
 }
 
 //Display the matrix
@@ -134,6 +135,7 @@ void Matrix::multiByMat(Matrix o) {
 void Matrix::determinant() {
     int d=0;
     if(col!=row||col<1||row<1) {
+        cout << "ERROR:Cannot Get determinant.\n";
         return;
     } else if(col==1&&col==1) {
         d=array[0][0];
@@ -228,6 +230,7 @@ int Matrix::determinant(int **a,int n) {
     }
 }
 
+//Use adj(A)
 void Matrix::inverse() {
     
 }

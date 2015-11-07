@@ -26,9 +26,10 @@ int main(int argc, char** argv) {
     int **array=getArray(row,col);//2-d array of matrix
     Matrix m(row,col,array,name);
     a.append(m);
+    cout<<"Size of the List: "<<a.getSize()<<endl;
     cout<<endl<<endl<<"Here is your matrix:"<<endl;
-    m.display();
-//    a[0].display();
+//    m.display();
+    a[0].display();
     //Multiply by a number
 //    cout<<"Multiply by: ";
 //    int num;
@@ -36,14 +37,16 @@ int main(int argc, char** argv) {
 //    m.multiByNum(num);
     
     //Test for add 2 matrix
-    m.transpose();
+    
+    //Transpose
+//    m.transpose();
 //    a[0].transpose();
     //Test for matrix multiplication
 //    Matrix n(m);
 //    m.multiByMat(n);
     cout<<endl<<endl;
-    m.determinant();
-//    a[0].determinant();
+//    m.determinant();
+    a[0].determinant();
     return 0;
 }
 

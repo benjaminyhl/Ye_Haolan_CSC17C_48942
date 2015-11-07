@@ -21,7 +21,7 @@ class LnkList {
         int size;
     public:
         //Constructor
-        LnkList() {head=nullptr;size=0;}
+        LnkList() {head=NULL;size=0;}
         
         //Copy Constructor
         LnkList(const LnkList &);
@@ -44,36 +44,47 @@ class LnkList {
 
 //Copy Constructor
 template <class T>
-LnkList<T>::LnkList(const LnkList &lnk) {
+LnkList<T>::LnkList(const LnkList &a) {
     //New version for copy constructor using append function
-    if(lnk.head==nullptr) head=nullptr;
-    else {
-        head=nullptr;
-        List *node=lnk.head;
-        do {
-            this->append(node->value);
+    List *node;
+    List *node2;
+    this->usdSize=a.size();
+    if(size>0) {
+        head=new List;
+        head->next=NULL;
+        node=head;
+        for(int i=0;i<size-1;i++) {
+            node->next=new List;
             node=node->next;
-        } while(node->next!=nullptr);
+        }
+        node=head;
+        node2=a.head;
+        for(int i=0;i<size;i++) {
+            node->value=node2->value;
+            node=node->next;
+            node2=node2->next;
+        }
+    } else {
+        LnkList();
     }
 }
 
 //Destructor
 template <class T>
 LnkList<T>::~LnkList() {
-    cout<<"Linked List destructor"<<endl;
+    
     List *node;
     List *nextNode;
-    if(head!=nullptr) {
-    node=head;
-    //loop to delete the pointer
-        do {
-            //get the next node
+    if(head!=NULL) {
+        node=head;
+        //loop to delete the pointer
+        for(int i=0;i<size;i++) {
             nextNode=node->next;
-            //delete the current node
             delete node;
-            node=nextNode;//point to the next one
-        }while(node!=nullptr);
+            node=nextNode;
+        }
     }
+    cout<<"Linked List destructor"<<endl;
 }
 
 
@@ -84,7 +95,7 @@ void LnkList<T>::prepend(T n) {
     newNode=new List;
     //set the new node
     newNode->value=n;
-    newNode->next=nullptr;
+    newNode->next=NULL;
     //when head is null
     if(!head) head=newNode;
     else {
@@ -101,9 +112,9 @@ void LnkList<T>::append(T n) {
     newNode=new List;
     //set the new node
     newNode->value=n;
-    newNode->next=nullptr;
+    newNode->next=NULL;
     //when head is null
-    if(head==nullptr) head=newNode;
+    if(head==NULL) head=newNode;
     else {
         node=head;
         //loop to the last node
@@ -122,17 +133,17 @@ void LnkList<T>::insertBefore(T n,T a) {
     newNode=new List;
     //set the new node
     newNode->value=n;
-    newNode->next=nullptr; 
-    if(head==nullptr) return;
+    newNode->next=NULL; 
+    if(head==NULL) return;
     else if(head->value==a) {
             newNode->next=head;
             head=newNode;
     } else {
         node=head;
-        while(node->next!=nullptr&&node->next->value!=a) {
+        while(node->next!=NULL&&node->next->value!=a) {
             node=node->next;
         } 
-        if(node->next!=nullptr&&node->next->value==a) {
+        if(node->next!=NULL&&node->next->value==a) {
             newNode->next=node->next;
             node->next=newNode;
             size++;
@@ -148,11 +159,11 @@ void LnkList<T>::insertAfter(T n,T a) {
     newNode=new List;
     //set the new node
     newNode->value=n;
-    newNode->next=nullptr; 
-    if(head==nullptr) return;
+    newNode->next=NULL; 
+    if(head==NULL) return;
     node=head;
     //loop to find a number a
-    while(node->next!=nullptr&&node->value!=a) {
+    while(node->next!=NULL&&node->value!=a) {
         node=node->next;
     } 
     if(node->value==a) {
@@ -168,8 +179,8 @@ template <class T>
 void LnkList<T>::extr(T n) {
     List *node=head;
     List *temp;//next node
-    if(head==nullptr) return;
-    while(node->next!=nullptr) {
+    if(head==NULL) return;
+    while(node->next!=NULL) {
         if(node->next->value==n) {
             temp=node->next;
             node->next=temp->next;
