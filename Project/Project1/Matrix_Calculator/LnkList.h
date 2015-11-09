@@ -46,6 +46,7 @@ class LnkList {
 template <class T>
 LnkList<T>::LnkList(const LnkList &a) {
     //New version for copy constructor using append function
+    cout<<"copy constructor of link list"<<endl;
     List *node;
     List *node2;
     this->usdSize=a.size();
@@ -72,11 +73,11 @@ LnkList<T>::LnkList(const LnkList &a) {
 //Destructor
 template <class T>
 LnkList<T>::~LnkList() {
-    
     List *node;
     List *nextNode;
     if(head!=NULL) {
         node=head;
+        cout<<"Linked List destructor"<<endl;
         //loop to delete the pointer
         for(int i=0;i<size;i++) {
             nextNode=node->next;
@@ -84,7 +85,6 @@ LnkList<T>::~LnkList() {
             node=nextNode;
         }
     }
-    cout<<"Linked List destructor"<<endl;
 }
 
 
@@ -118,8 +118,9 @@ void LnkList<T>::append(T n) {
     else {
         node=head;
         //loop to the last node
-        while(node->next)
+        while(node->next!=NULL) {
             node=node->next;
+        }
         node->next=newNode;
     }    
     size++;

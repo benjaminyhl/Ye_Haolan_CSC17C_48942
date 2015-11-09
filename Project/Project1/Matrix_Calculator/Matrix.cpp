@@ -10,6 +10,7 @@
 
 //Constructor
 Matrix::Matrix(int r, int c, int **a, string nm) {
+    cout<<"Constructor in Matrix"<<endl;
     row=r;
     col=c;
     name=nm;
@@ -18,10 +19,11 @@ Matrix::Matrix(int r, int c, int **a, string nm) {
 
 //Copy constructor
 Matrix::Matrix(const Matrix &o) {
+    //Copy constructor works well
     //create rows
-    row=o.getRow();
-    col=o.getCol();
-    name=o.getName();
+    this->row=o.getRow();
+    this->col=o.getCol();
+    this->name=o.getName();
     array=new int*[row];
     //create columns
     for(int i=0;i<row;i++) {
@@ -232,5 +234,99 @@ int Matrix::determinant(int **a,int n) {
 
 //Use adj(A)
 void Matrix::inverse() {
+    if(col!=row||col<1||row<1) {
+        cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
+        return;
+    } else if(col==1&&col==1) {
+        cout<<"1/"<<array[0][0]<<endl;
+    } else if(col==2&&col==2) {
+        int d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
+        if(d==0) cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
+        else {
+            int **temp;//2-d array of matrix
+            temp=new int*[row];
+            //create columns
+            for(int i=0;i<row;i++) {
+                temp[i]=new int[col];
+            }
+            temp[0][0]=array[1][1];    
+            temp[0][1]=-array[0][1];
+            temp[1][0]=-array[1][0];
+            temp[1][1]=array[0][0];
+            cout<<"Inverse: "<<endl;
+            cout<<"1/"<<d<<"*"<<endl;
+            for(int i=0;i<row;i++) {
+                cout<<"[ ";
+                for(int j=0;j<col;j++) {
+                    cout<<temp[i][j]<<" ";
+                }
+                cout<<"] "<<endl;
+            }
+        }
+    } else {
+        int det=determinant(array,row);
+        if(det==0) {
+            cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
+        } else {
+            int **a=adj();
+            cout<<"1/"<<det<<"*"<<endl;
+            for(int i=0;i<row;i++) {
+                cout<<"[ ";
+                for(int j=0;j<col;j++) {
+                    cout<<a[i][j]<<" ";
+                }
+                cout<<"] "<<endl;
+            }
+            for(int i=0;i<tRow;i++) {
+                delete []a[i];
+            }
+            delete []a;
+        }
+    }
+}
+
+int **Matrix::adj() {
+    int **a;
+    a=new int*[row];
+    //create columns
+    for(int i=0;i<row;i++) {
+        a[i]=new int[col];
+    }
+    int c=0,
+        r=0;
+    for(int i=0;i<row;i++) {
+        c=r=0;
+        for(int j=1;j<row;j++) {
+            for(int k=0;k<col;k++) {
+                if(k==i) continue;
+                temp[c][r]=array[j][k];
+                r++;
+                if(r==(row-1)) {
+                    c++;
+                    r=0;
+                }
+            }
+        }
+
+//            t=pow(-1,i)*array[0][i]*determinant(temp,tRow);
+//            cout<<"This : "<<t<<endl;
+//            d+=t;
+        d+=pow(-1,i)*array[0][i]*determinant(temp,tRow);
+
+
+
+    }
+    
+    return a;
+}
+
+int Matrix::cofactor(int i, int j) {
+    int res;
+    int **temp;
+    
+    return res;
+}
+
+void Matrix::reduce_echelon() {
     
 }

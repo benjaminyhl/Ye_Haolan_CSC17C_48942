@@ -19,6 +19,8 @@ class Matrix {
         int **array;
         string name;
         int determinant(int**,int);
+        int **adj();
+        int cofactor(int,int);
     public:
         Matrix() {row=col=0;array=0;name="";}
         Matrix(const Matrix &);
@@ -41,6 +43,8 @@ class Matrix {
         void setArray(int **a) {array=a;}
         void setName(string n) {name=n;}
         void display() const;
+        
+        
 };
 
 #endif	/* MATRIX_H */
