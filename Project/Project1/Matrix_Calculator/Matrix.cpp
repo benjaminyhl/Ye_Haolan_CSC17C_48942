@@ -144,46 +144,53 @@ void Matrix::determinant() {
     } else if(col==2&&col==2) {
         d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
     } else {
-        int **temp;//2-d array of matrix
-        //create rows
-        int tRow=row-1;
-        int tCol=col-1;
-        temp=new int*[tRow];
-        //create columns
-        for(int i=0;i<tRow;i++) {
-            temp[i]=new int[tCol];
-            for(int j=0;j<tCol;j++) {
-                temp[i][j]=0;
-            }
-        }
-        int c=0,
-            r=0;
+//        int **temp;//2-d array of matrix
+//        //create rows
+//        int tRow=row-1;
+//        int tCol=col-1;
+//        temp=new int*[tRow];
+//        //create columns
+//        for(int i=0;i<tRow;i++) {
+//            temp[i]=new int[tCol];
+//            for(int j=0;j<tCol;j++) {
+//                temp[i][j]=0;
+//            }
+//        }
+//        int c=0,
+//            r=0;
+//        for(int i=0;i<row;i++) {
+//            c=r=0;
+//            for(int j=1;j<row;j++) {
+//                for(int k=0;k<col;k++) {
+//                    if(k==i) continue;
+//                    temp[c][r]=array[j][k];
+//                    r++;
+//                    if(r==(row-1)) {
+//                        c++;
+//                        r=0;
+//                    }
+//                }
+//            }
+//            
+////            t=pow(-1,i)*array[0][i]*determinant(temp,tRow);
+////            cout<<"This : "<<t<<endl;
+////            d+=t;
+//            d+=pow(-1,i)*array[0][i]*determinant(temp,tRow);
+//            
+//            
+//            
+//        }
+//        for(int i=0;i<tRow;i++) {
+//                delete []temp[i];
+//            }
+//            delete []temp;
+//        
+//        
+        //Use  cofactor
         for(int i=0;i<row;i++) {
-            c=r=0;
-            for(int j=1;j<row;j++) {
-                for(int k=0;k<col;k++) {
-                    if(k==i) continue;
-                    temp[c][r]=array[j][k];
-                    r++;
-                    if(r==(row-1)) {
-                        c++;
-                        r=0;
-                    }
-                }
-            }
-            
-//            t=pow(-1,i)*array[0][i]*determinant(temp,tRow);
-//            cout<<"This : "<<t<<endl;
-//            d+=t;
-            d+=pow(-1,i)*array[0][i]*determinant(temp,tRow);
-            
-            
-            
+            d+=array[0][i]*cofactor(0,i);
         }
-        for(int i=0;i<tRow;i++) {
-                delete []temp[i];
-            }
-            delete []temp;
+        
     }
     cout<<"Determinant: "<<d<<endl;
 }
@@ -277,7 +284,7 @@ void Matrix::inverse() {
                 }
                 cout<<"] "<<endl;
             }
-            for(int i=0;i<tRow;i++) {
+            for(int i=0;i<row;i++) {
                 delete []a[i];
             }
             delete []a;
@@ -292,38 +299,48 @@ int **Matrix::adj() {
     for(int i=0;i<row;i++) {
         a[i]=new int[col];
     }
-    int c=0,
-        r=0;
     for(int i=0;i<row;i++) {
-        c=r=0;
-        for(int j=1;j<row;j++) {
-            for(int k=0;k<col;k++) {
-                if(k==i) continue;
-                temp[c][r]=array[j][k];
-                r++;
-                if(r==(row-1)) {
-                    c++;
-                    r=0;
-                }
-            }
+        for(int j=0;j<col;j++) {
+            a[i][j]=cofactor(j,i);
         }
-
-//            t=pow(-1,i)*array[0][i]*determinant(temp,tRow);
-//            cout<<"This : "<<t<<endl;
-//            d+=t;
-        d+=pow(-1,i)*array[0][i]*determinant(temp,tRow);
-
-
-
     }
     
     return a;
 }
 
-int Matrix::cofactor(int i, int j) {
-    int res;
-    int **temp;
-    
+int Matrix::cofactor(int a, int b) {
+    int res=0;
+    int **temp;//2-d array of matrix
+    //create rows
+    int tRow=row-1;
+    int tCol=col-1;
+    temp=new int*[tRow];
+    //create columns
+    for(int i=0;i<tRow;i++) {
+        temp[i]=new int[tCol];
+        for(int j=0;j<tCol;j++) {
+            temp[i][j]=0;
+        }
+    }
+    int c=0,
+        r=0;
+    for(int i=0;i<row;i++) {
+        if(i!=a) {
+            for(int j=0;j<col;j++) {
+                if(j!=b) {
+                    temp[r][c++]=array[i][j];
+                }
+            }
+            c=0;
+            r++;
+        }
+    }
+//    cout<<r<<" "<<c<<endl;
+    res=pow(-1,a+b)*determinant(temp,tRow);
+    for(int i=0;i<tRow;i++) {
+                delete []temp[i];
+            }
+            delete []temp;
     return res;
 }
 

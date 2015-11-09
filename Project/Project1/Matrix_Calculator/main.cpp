@@ -26,7 +26,6 @@ int main(int argc, char** argv) {
     //create a linked list to store the matrix
     int **array=getArray(row,col);//2-d array of matrix
     Matrix m(row,col,array,name);
-    cout<<"hello"<<endl;
 //    a.push_back(m);
 //    a.append(m); 
     cout<<endl<<endl<<"Here is your matrix:"<<endl;
@@ -47,9 +46,18 @@ int main(int argc, char** argv) {
 //    Matrix n(m);
 //    m.multiByMat(n);
 //    cout<<endl<<endl;
-//    m.determinant();
+    m.determinant();
 //    a[0].determinant();
-    m.inverse();
+//    m.inverse();
+    
+//    //Test the Cofactor
+//    for(int i=0;i<m.getRow();i++) {
+//        for(int j=0;j<m.getCol();j++) {
+//            cout<<"Cofactor("<<i<<","<<j<<"): "<<m.cofactor(i,j)<<endl;
+//        }
+//    }
+//    m.inverse();
+    
     return 0;
 }
 

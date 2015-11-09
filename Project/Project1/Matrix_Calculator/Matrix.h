@@ -20,7 +20,7 @@ class Matrix {
         string name;
         int determinant(int**,int);
         int **adj();
-        int cofactor(int,int);
+        
     public:
         Matrix() {row=col=0;array=0;name="";}
         Matrix(const Matrix &);
@@ -44,7 +44,7 @@ class Matrix {
         void setName(string n) {name=n;}
         void display() const;
         
-        
+        int cofactor(int,int);
 };
 
 #endif	/* MATRIX_H */
