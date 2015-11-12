@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 //    Matrix n(m);
 //    m.multiByMat(n);
 //    cout<<endl<<endl;
-    m.determinant();
+//    m.determinant();
 //    a[0].determinant();
 //    m.inverse();
     
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 //            cout<<"Cofactor("<<i<<","<<j<<"): "<<m.cofactor(i,j)<<endl;
 //        }
 //    }
-//    m.inverse();
+    m.inverse();
     
     return 0;
 }

@@ -43,8 +43,13 @@ class Matrix {
         void setArray(int **a) {array=a;}
         void setName(string n) {name=n;}
         void display() const;
-        
         int cofactor(int,int);
+        //operator +, -, *
+        void operator=(const Matrix &right);
+        Matrix operator + (const Matrix &);
+        Matrix operator - (const Matrix &);
+        Matrix operator * (const Matrix &);
+        Matrix operator * (int);
 };
 
 #endif	/* MATRIX_H */
