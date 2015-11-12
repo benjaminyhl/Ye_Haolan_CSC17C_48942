@@ -245,6 +245,7 @@ void Matrix::inverse() {
         cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
         return;
     } else if(col==1&&col==1) {
+        cout<<"Inverse: ";
         cout<<"1/"<<array[0][0]<<endl;
     } else if(col==2&&col==2) {
         int d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
@@ -275,6 +276,7 @@ void Matrix::inverse() {
         if(det==0) {
             cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
         } else {
+            cout<<"Inverse: "<<endl;
             int **a=adj();
             cout<<"1/"<<det<<"*"<<endl;
             for(int i=0;i<row;i++) {

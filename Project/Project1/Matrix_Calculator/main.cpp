@@ -13,11 +13,35 @@ using namespace std;
 #include "LnkList.h" //Something wrong
 
 void menu();
+void mainMenu();
 int **getArray(int &,int &);
-
+void game();
+void calculator();
 
 int main(int argc, char** argv) {
-    menu();
+//    char ch1;
+//    do {
+//        do {
+//            mainMenu();
+//            cout<<"You choose(1-3): ";
+//            cin>>ch1;
+//            if(ch1!='1'&&ch1!='2'&&ch1!='3') {
+//                    cout<<"Invalid input"<<endl;
+//            } 
+//        } while(ch1!='1'&&ch1!='2'&&ch1!='3');
+//        if(ch1=='1') {
+//            calculator();
+//        } else if(ch1=='2') {
+//            game();
+//        }
+//        if(ch1!='3') {
+//            cout<<"Click Enter to continue...";
+//            cin.ignore();
+//            cin.ignore();
+//        }
+//    } while(ch1!='3');
+    
+
 //    vector<Matrix> a;
 //    LnkList<Matrix> a;
     //Add a matrix
@@ -39,9 +63,9 @@ int main(int argc, char** argv) {
     
     //Test for add 2 matrix
     
-    //Transpose
-//    m.transpose();
-//    a[0].transpose();
+    //Trch1pose
+//    m.trch1pose();
+//    a[0].trch1pose();
     //Test for matrix multiplication
 //    Matrix n(m);
 //    m.multiByMat(n);
@@ -59,6 +83,23 @@ int main(int argc, char** argv) {
     m.inverse();
     
     return 0;
+}
+
+void game() {
+    //select level
+    cout<<"game"<<endl;
+}
+
+void calculator() {
+    menu();
+    cout<<"Cal"<<endl;
+}
+
+void mainMenu() {
+    cout<<"***********     Main  Menu     ***********"<<endl;
+    cout<<"1. MATRIX CALCULATOR"<<endl;
+    cout<<"2. GAME"<<endl;
+    cout<<"3. Exit"<<endl;
 }
 
 void menu() {
