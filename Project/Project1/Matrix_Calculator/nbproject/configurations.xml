@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>LnkList.h</itemPath>
       <itemPath>Matrix.h</itemPath>
+      <itemPath>Record.h</itemPath>
+      <itemPath>myVector.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,6 +17,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Matrix.cpp</itemPath>
+      <itemPath>Record.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -45,7 +48,13 @@
       </item>
       <item path="Matrix.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Record.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Record.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="myVector.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -74,7 +83,13 @@
       </item>
       <item path="Matrix.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Record.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Record.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="myVector.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

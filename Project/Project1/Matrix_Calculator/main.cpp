@@ -7,16 +7,18 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 #include "Matrix.h"
 #include "LnkList.h" //Something wrong
-
+#include "Record.h"
 void menu();
 void mainMenu();
 int **getArray(int &,int &);
 void game();
 void calculator();
+
 
 int main(int argc, char** argv) {
 //    char ch1;
@@ -87,7 +89,11 @@ int main(int argc, char** argv) {
 
 void game() {
     //select level
-    cout<<"game"<<endl;
+    cout<<"GAME TIME"<<endl;
+    cout<"You will have 5 matrix problems to solve"<<endl;
+    for(int i=0;i<5;i++) {
+        
+    }
 }
 
 void calculator() {
