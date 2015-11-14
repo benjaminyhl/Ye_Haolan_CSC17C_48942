@@ -54,7 +54,7 @@ MyVector<T>::MyVector() {
     actSize = 1;
     usdSize = 0;
     aptr=new T[actSize];
-    *aptr=0;
+    *aptr=NULL;
 }
 
 // Constructor with size argument

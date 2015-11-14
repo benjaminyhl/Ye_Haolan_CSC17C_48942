@@ -50,13 +50,15 @@ Matrix::~Matrix() {
 //Display the matrix
 void Matrix::display() const{
     //output the matrix
+    cout<<"Here is the matrix:"<<endl;
     for(int i=0;i<row;i++) {
+        cout<<"[ ";
         for(int j=0;j<col;j++) {
             cout<<array[i][j]<<" ";
         }
-        cout<<endl;
+        cout<<"]"<<endl;
     }
-    cout<<endl<<endl;
+    cout<<endl;
 }
 
 void Matrix::multiByNum(int n) {
@@ -106,6 +108,24 @@ void Matrix::transpose() {
         cout<<endl;
     }
 }
+int **Matrix::timesByMat(Matrix o) {
+    int **a;//2-d array of matrix
+    //create rows
+    a=new int*[this->row];
+    //create columns
+    for(int i=0;i<this->row;i++) {
+        a[i]=new int[o.col];
+    }
+    for(int i=0;i<this->row;i++) {
+        for(int j=0;j<o.col;j++) {
+            a[i][j]=0;
+            for(int k=0;k<this->col;k++) {
+                a[i][j]+=array[i][k]*o.array[k][j];//keep doing
+            }
+        }
+    }
+    return a;
+}
 
 void Matrix::multiByMat(Matrix o) {
     if(this->col!=o.getRow()) {
@@ -132,6 +152,23 @@ void Matrix::multiByMat(Matrix o) {
         Matrix r(row,col,a,"");
         r.display();
     }
+}
+
+int Matrix::getDet() {
+    int d=0;
+    if(col!=row||col<1||row<1) {
+        cout << "ERROR:Cannot Get determinant.\n";
+        return 0;
+    } else if(col==1&&col==1) {
+        d=array[0][0];
+    } else if(col==2&&col==2) {
+        d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
+    } else {       
+        for(int i=0;i<row;i++) {
+            d+=array[0][i]*cofactor(0,i);
+        }
+    }
+    return d;
 }
 
 void Matrix::determinant() {

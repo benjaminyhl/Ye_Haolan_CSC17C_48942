@@ -30,9 +30,10 @@ class Matrix {
         void subtract(Matrix);         //done
         void multiByNum(int);           //done
         void multiByMat(Matrix);//multiply by a matrix
+        int **timesByMat(Matrix);//multiply by a matrix
         void transpose();               //done
         void determinant();
-        
+        int getDet();
         void inverse();
         void reduce_echelon();
         int getRow() const {return row;}
@@ -44,6 +45,7 @@ class Matrix {
         void setName(string n) {name=n;}
         void display() const;
         int cofactor(int,int);
+        int **getArray() const {return array;}
         //operator +, -, *
         void operator=(const Matrix &right);
         Matrix operator + (const Matrix &);
