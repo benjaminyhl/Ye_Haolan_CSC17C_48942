@@ -10,7 +10,7 @@
 
 //Constructor
 Matrix::Matrix(int r, int c, int **a, string nm) {
-    cout<<"Constructor in Matrix"<<endl;
+//    cout<<"Constructor in Matrix"<<endl;
     row=r;
     col=c;
     name=nm;
@@ -50,7 +50,7 @@ Matrix::~Matrix() {
 //Display the matrix
 void Matrix::display() const{
     //output the matrix
-    cout<<"Here is the matrix:"<<endl;
+//    cout<<endl;
     for(int i=0;i<row;i++) {
         cout<<"[ ";
         for(int j=0;j<col;j++) {
@@ -58,54 +58,77 @@ void Matrix::display() const{
         }
         cout<<"]"<<endl;
     }
-    cout<<endl;
+//    cout<<endl;
 }
 
 void Matrix::multiByNum(int n) {
     cout<<"The result of multiplying by "<<n<<":"<<endl;
     for(int i=0;i<row;i++) {
+        cout<<"[ ";
         for(int j=0;j<col;j++) {
             cout<<n*array[i][j]<<" ";
         }
-        cout<<endl;
+        cout<<"]"<<endl;
     }
 }
 
 //Matrix add a matrix
 void Matrix::addMatrix(Matrix a) {
-    cout<<"The result of two matrix addition:"<<endl;
-    if(row!=a.getRow()||col!=a.getCol()) return;
+    
+    if(row!=a.getRow()||col!=a.getCol()) {
+        cout<<"Invalid operation"<<endl;
+        cout<<"Size of the first matrix should be \n";
+        cout<<"Equal to size of the second matrix"<<endl;
+        return;
+    }
     else {
+        display();
+        cout<<"  + "<<endl;
+        a.display();
+        cout<<"The result of two matrix addition:"<<endl;
         for(int i=0;i<row;i++) {
+            cout<<"[ ";
             for(int j=0;j<col;j++) {
                 cout<<array[i][j]+a.array[i][j]<<" ";
             }
-            cout<<endl;
+            cout<<"]"<<endl;
         }
+        cout<<endl;
     }
 }
 
 //Matrix minus a matrix
 void Matrix::subtract(Matrix a) {
-    cout<<"The result of two matrix subtraction:"<<endl;
-    if(row!=a.getRow()||col!=a.getCol()) return;
+    if(row!=a.getRow()||col!=a.getCol()) {
+        cout<<"Invalid operation"<<endl;
+        cout<<"Size of the first matrix should be \n";
+        cout<<"Equal to size of the second matrix"<<endl;
+        return;
+    }
     else {
+        display();
+        cout<<"  - "<<endl;
+        a.display();
+        cout<<"The result of two matrix subtraction:"<<endl;
         for(int i=0;i<row;i++) {
+            cout<<"[ ";
             for(int j=0;j<col;j++) {
                 cout<<array[i][j]-a.array[i][j]<<" ";
             }
-            cout<<endl;
+            cout<<"]"<<endl;
         }
+        cout<<endl;
     }
 }
 
 void Matrix::transpose() {
     cout<<"The transpose is "<<endl;
      for(int i=0;i<col;i++) {
+         cout<<"[ ";
         for(int j=0;j<row;j++) {
             cout<<array[j][i]<<" ";
         }
-        cout<<endl;
+        cout<<"]"<<endl;
     }
 }
 int **Matrix::timesByMat(Matrix o) {
@@ -134,6 +157,9 @@ void Matrix::multiByMat(Matrix o) {
         cout<<"Equal to the number of rows in the second matrix"<<endl;
         return;
     } else {
+        display();
+        cout<<"  * "<<endl;
+        o.display();
         int **a;//2-d array of matrix
         //create rows
         a=new int*[this->row];
@@ -149,6 +175,7 @@ void Matrix::multiByMat(Matrix o) {
                 }
             }
         }
+        cout<<"The result of two matrix multiplication:"<<endl;
         Matrix r(row,col,a,"");
         r.display();
     }
@@ -229,6 +256,7 @@ void Matrix::determinant() {
         }
         
     }
+    display();
     cout<<"Determinant: "<<d<<endl;
 }
 
@@ -282,12 +310,15 @@ void Matrix::inverse() {
         cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
         return;
     } else if(col==1&&col==1) {
+        display();
         cout<<"Inverse: ";
         cout<<"1/"<<array[0][0]<<endl;
     } else if(col==2&&col==2) {
+        
         int d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
         if(d==0) cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
         else {
+            display();
             int **temp;//2-d array of matrix
             temp=new int*[row];
             //create columns
@@ -299,7 +330,8 @@ void Matrix::inverse() {
             temp[1][0]=-array[1][0];
             temp[1][1]=array[0][0];
             cout<<"Inverse: "<<endl;
-            cout<<"1/"<<d<<"*"<<endl;
+            cout<<(d<0?"-":"");
+            cout<<"1/"<<abs(d)<<"*"<<endl;
             for(int i=0;i<row;i++) {
                 cout<<"[ ";
                 for(int j=0;j<col;j++) {
@@ -307,15 +339,18 @@ void Matrix::inverse() {
                 }
                 cout<<"] "<<endl;
             }
+            //delete temp memory ********************************
         }
     } else {
         int det=determinant(array,row);
         if(det==0) {
             cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
         } else {
+            display();
             cout<<"Inverse: "<<endl;
             int **a=adj();
-            cout<<"1/"<<det<<"*"<<endl;
+            cout<<(det<0?"-":"");
+            cout<<"1/"<<abs(det)<<"*"<<endl;
             for(int i=0;i<row;i++) {
                 cout<<"[ ";
                 for(int j=0;j<col;j++) {

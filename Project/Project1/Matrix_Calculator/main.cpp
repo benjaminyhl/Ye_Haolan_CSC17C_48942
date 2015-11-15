@@ -22,28 +22,27 @@ void calculator();
 
 int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
-//    game();
     char ch1;
     do {
         do {
             mainMenu();
-            cout<<"You choose(1-3): ";
+            cout<<"You choose(0-2): ";
             cin>>ch1;
-            if(ch1!='1'&&ch1!='2'&&ch1!='3') {
+            if(ch1!='0'&&ch1!='1'&&ch1!='2') {
                     cout<<"Invalid input"<<endl;
             } 
-        } while(ch1!='1'&&ch1!='2'&&ch1!='3');
+        } while(ch1!='1'&&ch1!='2'&&ch1!='0');
         if(ch1=='1') {
             calculator();
         } else if(ch1=='2') {
             game();
         }
-        if(ch1!='3') {
+        if(ch1!='0') {
             cout<<"Click Enter to continue...";
             cin.ignore();
             cin.ignore();
         }
-    } while(ch1!='3');
+    } while(ch1!='0');
     
 
 //    vector<Matrix> a;
@@ -242,7 +241,6 @@ void game() {
     cout<<"Your name: ";
     cin>>name;
     Record r(name,correct);
-    
     r.disRec();
 }
 
@@ -254,33 +252,85 @@ void calculator() {
         
         //select program
         do {
-            cout<<"You choose(1-8): ";
+            cout<<"You choose(0-8): ";
             cin>>ans;
-            if(ans.at(0)<48||ans.at(0)>57||ans.length()>1)
+            if(ans.at(0)<'0'||ans.at(0)>'7'||ans.length()>1)
                 cout<<"Invalid input"<<endl;
-        }while(ans.at(0)<48||ans.at(0)>57||ans.length()>1);
+        }while(ans.at(0)<'0'||ans.at(0)>'7'||ans.length()>1);
         sel=ans.at(0);
-        
-//        switch(sel) {
-//            case '1': pg1(); break;
-//            case '2': pg2(); break;
-//            case '3': pg3(); break;
-//            case '4': pg4(); break;
-//            case '5': pg5(); break;
-//            case '6': pg6(); break;
-//            case '7': pg7(); break;
-//            case '0': {
-//                cout<<"The end of MATRIX CALCULATOR"<<endl;
-//                break;
-//            }
-//            default:;
-//        }
-//        if(sel!='0') {
-//            cout<<endl;
-//            cout<<"Press Enter to continue";
-//            cin.ignore();
-//            cin.ignore();
-//        }   
+        Matrix a;
+        if(sel!='0') {
+            //Add a matrix
+            int row,col;//row and column
+            string name="aaa";//name of the matrix
+            //create a linked list to store the matrix
+            int **array=getArray(row,col);//2-d array of matrix
+            a.setArray(array);
+            a.setCol(col);
+            a.setRow(row);
+            a.setName(name);
+        }
+        if(sel>='1'&&sel<='3') {
+            int r,c;
+            string nm="abc";
+            cout<<"Please input the other matrix: \n";
+            int **arr=getArray(r,c);
+            Matrix b(r,c,arr,nm);
+            switch(sel) {
+                case '1':{
+                    //Add a matrix
+                    a.addMatrix(b);
+                    break;
+                }
+                case '2': {
+                    //Subtract a matrix
+                    a.subtract(b);
+                    break;
+                } 
+                case '3': {
+                    //Multiply by a matrix
+                    a.multiByMat(b);
+                    break;
+                }
+                default:;
+            }
+        } else if(sel>='4'&&sel<='7') {
+            switch(sel) {
+                case '4':{
+                    //Multiply by a number
+                    int number;//a number to multiply a matrix
+                    cout<<"An integer to multiply the matrix: ";
+                    cin>>number;
+                    a.multiByNum(number);
+                    break;
+                }
+                case '5': {
+                    //Determinant
+                    a.determinant();
+                    break;
+                } 
+                case '6': {
+                    //Transpose
+                    a.transpose();
+                    break;
+                }
+                case '7': {
+                    //Inverse
+                    a.inverse();
+                    break;
+                }
+                default:;
+            }
+        }
+        if(sel=='0') {
+            cout<<"The end of MATRIX CALCULATOR"<<endl;
+        }
+        if(sel!='0') {
+            cout<<endl;
+            cout<<"Press Enter to continue";
+            cin.ignore();
+            cin.ignore();
+        }   
     }while(sel!='0');    
     
     
@@ -290,24 +340,24 @@ void mainMenu() {
     cout<<"***********     Main  Menu     ***********"<<endl;
     cout<<"1. MATRIX CALCULATOR"<<endl;
     cout<<"2. GAME"<<endl;
-    cout<<"3. Exit"<<endl;
+    cout<<"0. Exit"<<endl;
 }
 
 void menu() {
     cout<<"*********   MATRIX CALCULATOR   *********"<<endl;
-    cout<<endl<<endl<<"***********     Menu     ***********"<<endl<<endl;
+    cout<<"************     Menu     ************"<<endl<<endl;
     cout<<"1. Add a matrix"<<endl;
     cout<<"2. Subtract a matrix"<<endl;
-    cout<<"3. Determinant"<<endl;
-    cout<<"4. Transpose"<<endl;
-    cout<<"5. Inverse"<<endl;
-    cout<<"6. Multiply by a number"<<endl;
-    cout<<"7. Multiply by a matrix"<<endl;
+    cout<<"3. Multiply by a matrix"<<endl;
+    cout<<"4. Multiply by a number"<<endl;
+    cout<<"5. Determinant"<<endl;
+    cout<<"6. Transpose"<<endl;
+    cout<<"7. Inverse"<<endl;
     cout<<"0. Exit"<<endl;
 }
 
 int **getArray(int &row,int &col) {
-    cout<<"Row and Column of matrix: "<<endl;
+    cout<<"Row and Column of matrix: ";
     cin>>row>>col;
     //create rows
     int **array;
@@ -319,6 +369,7 @@ int **getArray(int &row,int &col) {
     
     //Get the elements of matrix
     for(int i=0;i<row;i++) {
+        cout<<"Row#"<<(i+1)<<": ";
         for(int j=0;j<col;j++) {
             cin>>array[i][j];
         }
