@@ -20,31 +20,30 @@ int **rndmArr(int,int);
 void game();
 void calculator();
 
-
 int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
-    game();
-//    char ch1;
-//    do {
-//        do {
-//            mainMenu();
-//            cout<<"You choose(1-3): ";
-//            cin>>ch1;
-//            if(ch1!='1'&&ch1!='2'&&ch1!='3') {
-//                    cout<<"Invalid input"<<endl;
-//            } 
-//        } while(ch1!='1'&&ch1!='2'&&ch1!='3');
-//        if(ch1=='1') {
-//            calculator();
-//        } else if(ch1=='2') {
-//            game();
-//        }
-//        if(ch1!='3') {
-//            cout<<"Click Enter to continue...";
-//            cin.ignore();
-//            cin.ignore();
-//        }
-//    } while(ch1!='3');
+//    game();
+    char ch1;
+    do {
+        do {
+            mainMenu();
+            cout<<"You choose(1-3): ";
+            cin>>ch1;
+            if(ch1!='1'&&ch1!='2'&&ch1!='3') {
+                    cout<<"Invalid input"<<endl;
+            } 
+        } while(ch1!='1'&&ch1!='2'&&ch1!='3');
+        if(ch1=='1') {
+            calculator();
+        } else if(ch1=='2') {
+            game();
+        }
+        if(ch1!='3') {
+            cout<<"Click Enter to continue...";
+            cin.ignore();
+            cin.ignore();
+        }
+    } while(ch1!='3');
     
 
 //    vector<Matrix> a;
@@ -93,10 +92,10 @@ int main(int argc, char** argv) {
 void game() {    
     cout<<"GAME TIME"<<endl;
     cout<<"You will have 5 matrix problems to solve"<<endl;
-    for(int i=1;i<=5;i++) {
+    int correct=0;
+    for(int i=1;i<=4;i++) {
         cout<<endl<<"Problem #"<<i<<": "<<endl;
-        int correct=0;
-        int temp=rand()%5+1;
+        int temp=rand()%2+1;
         cout<<"Temp: "<<temp<<endl;
         switch(temp) {
             case 1: {
@@ -238,11 +237,53 @@ void game() {
             default:;
         }
     }
+    string name;
+    cout<<"You got "<<correct<<"/5"<<endl;
+    cout<<"Your name: ";
+    cin>>name;
+    Record r(name,correct);
+    
+    r.disRec();
 }
 
 void calculator() {
-    menu();
-    cout<<"Cal"<<endl;
+    string ans;
+    char sel;
+    do {    
+        menu();
+        
+        //select program
+        do {
+            cout<<"You choose(1-8): ";
+            cin>>ans;
+            if(ans.at(0)<48||ans.at(0)>57||ans.length()>1)
+                cout<<"Invalid input"<<endl;
+        }while(ans.at(0)<48||ans.at(0)>57||ans.length()>1);
+        sel=ans.at(0);
+        
+//        switch(sel) {
+//            case '1': pg1(); break;
+//            case '2': pg2(); break;
+//            case '3': pg3(); break;
+//            case '4': pg4(); break;
+//            case '5': pg5(); break;
+//            case '6': pg6(); break;
+//            case '7': pg7(); break;
+//            case '0': {
+//                cout<<"The end of MATRIX CALCULATOR"<<endl;
+//                break;
+//            }
+//            default:;
+//        }
+//        if(sel!='0') {
+//            cout<<endl;
+//            cout<<"Press Enter to continue";
+//            cin.ignore();
+//            cin.ignore();
+//        }   
+    }while(sel!='0');    
+    
+    
 }
 
 void mainMenu() {
@@ -253,7 +294,7 @@ void mainMenu() {
 }
 
 void menu() {
-    cout<<"****WELCOME TO MATRIX CALCULATOR****"<<endl;
+    cout<<"*********   MATRIX CALCULATOR   *********"<<endl;
     cout<<endl<<endl<<"***********     Menu     ***********"<<endl<<endl;
     cout<<"1. Add a matrix"<<endl;
     cout<<"2. Subtract a matrix"<<endl;
@@ -262,7 +303,7 @@ void menu() {
     cout<<"5. Inverse"<<endl;
     cout<<"6. Multiply by a number"<<endl;
     cout<<"7. Multiply by a matrix"<<endl;
-    cout<<"8. Exit"<<endl;
+    cout<<"0. Exit"<<endl;
 }
 
 int **getArray(int &row,int &col) {

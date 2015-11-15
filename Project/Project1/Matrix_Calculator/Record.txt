@@ -1,0 +1,11 @@
+10
+haoooooo 4 
+eeeeee 4 
+asdasfadg 3 
+qqqqqq 3 
+zzzzz 2 
+rrrrrr 2 
+mmmmmmm 2 
+ttttt 2 
+benben 1 
+zzzzbbbb 0 
