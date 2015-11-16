@@ -91,7 +91,7 @@ void game() {
     cout<<"GAME TIME"<<endl;
     cout<<"You will have 5 matrix problems to solve"<<endl;
     int correct=0;
-    for(int i=1;i<=2;i++) {
+    for(int i=1;i<=5;i++) {
         cout<<endl<<"Problem #"<<i<<": "<<endl;
         int temp=rand()%2+1;
         cout<<"Temp: "<<temp<<endl;
@@ -340,6 +340,7 @@ void calculator() {
 }
 
 void mainMenu() {
+    cout<<endl;
     cout<<"***********     Main  Menu     ***********"<<endl;
     cout<<"1. MATRIX CALCULATOR"<<endl;
     cout<<"2. GAME"<<endl;
@@ -347,8 +348,9 @@ void mainMenu() {
 }
 
 void menu() {
+    cout<<endl;
     cout<<"*********   MATRIX CALCULATOR   *********"<<endl;
-    cout<<"************     Menu     ************"<<endl<<endl;
+    cout<<"************     Menu     ************"<<endl;
     cout<<"1. Add a matrix"<<endl;
     cout<<"2. Subtract a matrix"<<endl;
     cout<<"3. Multiply by a matrix"<<endl;

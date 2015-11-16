@@ -9,6 +9,11 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <set>
+#include <map>
+#include <algorithm>
+#include <iterator>
 #include "LnkList.h"
 using namespace std;
 
