@@ -40,7 +40,6 @@ int main(int argc, char** argv) {
         if(ch1!='0') {
             cout<<"Click Enter to continue...";
             cin.ignore();
-            cin.ignore();
         }
     } while(ch1!='0');
     
@@ -50,7 +49,7 @@ int main(int argc, char** argv) {
     //Add a matrix
 //    int row,col;//row and column
 //    string name="aaa";//name of the matrix
-//    //create a linked list to store the matrix
+    //create a linked list to store the matrix
 //    int **array=getArray(row,col);//2-d array of matrix
 //    Matrix m(row,col,array,name);
 //    a.push_back(m);
@@ -68,7 +67,7 @@ int main(int argc, char** argv) {
     
     //Trch1pose
 //    m.trch1pose();
-//    a[0].trch1pose();
+//    a[0].transpose();
     //Test for matrix multiplication
 //    Matrix n(m);
 //    m.multiByMat(n);
@@ -92,7 +91,7 @@ void game() {
     cout<<"GAME TIME"<<endl;
     cout<<"You will have 5 matrix problems to solve"<<endl;
     int correct=0;
-    for(int i=1;i<=4;i++) {
+    for(int i=1;i<=2;i++) {
         cout<<endl<<"Problem #"<<i<<": "<<endl;
         int temp=rand()%2+1;
         cout<<"Temp: "<<temp<<endl;
@@ -237,9 +236,13 @@ void game() {
         }
     }
     string name;
+    cin.ignore();
     cout<<"You got "<<correct<<"/5"<<endl;
-    cout<<"Your name: ";
-    cin>>name;
+    do {
+        cout<<"Your name(without space): ";
+        getline(cin,name);
+        if(name.find(' ')!=-1) cout<<"Please input without space"<<endl;
+    } while(name.find(' ')!=-1);
     Record r(name,correct);
     r.disRec();
 }

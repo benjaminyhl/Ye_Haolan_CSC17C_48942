@@ -73,18 +73,14 @@ LnkList<T>::LnkList(const LnkList &a) {
 //Destructor
 template <class T>
 LnkList<T>::~LnkList() {
-    List *node;
-    List *nextNode;
-    if(head!=NULL) {
-        node=head;
         cout<<"Linked List destructor"<<endl;
         //loop to delete the pointer
-        for(int i=0;i<size;i++) {
-            nextNode=node->next;
-            delete node;
-            node=nextNode;
-        }
-    }
+//        for(int i=0;i<size;i++) {
+//            nextNode=node->next;
+//            delete node;
+//            node=nextNode;
+//        }
+    
 }
 
 

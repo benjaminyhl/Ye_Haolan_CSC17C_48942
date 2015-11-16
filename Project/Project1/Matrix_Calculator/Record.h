@@ -8,17 +8,17 @@
 #define	RECORD_H
 
 #include <iostream>
-#include <vector>
 #include <string>
+#include "LnkList.h"
 using namespace std;
 
 class Record {
     private:
-        vector<string> name;
-        vector<int> corrAns;//count of correct answer
+        LnkList<string> name;
+        LnkList<int> corrAns;//count of correct answer
         void init();
-        void quickSort(vector<string> &,vector<int> &,int,int);
-        int pivot(vector<string> &,vector<int> &,int,int);
+        void quickSort(LnkList<string> &,LnkList<int> &,int,int);
+        int pivot(LnkList<string> &,LnkList<int> &,int,int);
         template <class T>
         void swap(T &a,T &b) {
             T temp=a;

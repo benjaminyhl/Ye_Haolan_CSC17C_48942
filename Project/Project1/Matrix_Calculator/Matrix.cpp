@@ -421,3 +421,22 @@ int Matrix::cofactor(int a, int b) {
 void Matrix::reduce_echelon() {
     
 }
+
+void Matrix::operator =(const Matrix& right) {
+    for(int i=0;i<row;i++) {
+        delete []array[i];
+    }
+    delete []array;
+    name=right.getName();
+    row=right.getRow();
+    col=right.getCol();
+    array=new int*[row];
+    //create columns
+    for(int i=0;i<row;i++) {
+        array[i]=new int[col];
+        for(int j=0;j<col;j++) {
+            array[i][j]=right.getArray()[i][j];
+        }
+    }
+    
+}
