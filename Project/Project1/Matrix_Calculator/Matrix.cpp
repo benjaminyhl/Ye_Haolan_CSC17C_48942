@@ -10,7 +10,6 @@
 
 //Constructor
 Matrix::Matrix(int r, int c, int **a, string nm) {
-//    cout<<"Constructor in Matrix"<<endl;
     row=r;
     col=c;
     name=nm;
@@ -25,11 +24,9 @@ Matrix::Matrix(const Matrix &o) {
     this->col=o.getCol();
     this->name=o.getName();
     array=new int*[row];
-    //create columns
+    //create columns and copy matrix
     for(int i=0;i<row;i++) {
         array[i]=new int[col];
-    }
-    for(int i=0;i<row;i++) {
         for(int j=0;j<col;j++) {
             array[i][j]=o.array[i][j];
         }
@@ -38,13 +35,12 @@ Matrix::Matrix(const Matrix &o) {
 
 //Destructor
 Matrix::~Matrix() {
-    
     //deallocate memory
     for(int i=0;i<row;i++) {
         delete []array[i];
     }
     delete []array;
-    cout<<"Matrix destructor"<<endl;
+//    cout<<"Matrix destructor"<<endl;
 }
 
 //Display the matrix
@@ -61,6 +57,7 @@ void Matrix::display() const{
 //    cout<<endl;
 }
 
+//multiply a Number
 void Matrix::multiByNum(int n) {
     cout<<"The result of multiplying by "<<n<<":"<<endl;
     for(int i=0;i<row;i++) {
@@ -121,6 +118,7 @@ void Matrix::subtract(Matrix a) {
     }
 }
 
+//Transpose
 void Matrix::transpose() {
     cout<<"The transpose is "<<endl;
      for(int i=0;i<col;i++) {
@@ -131,25 +129,8 @@ void Matrix::transpose() {
         cout<<"]"<<endl;
     }
 }
-int **Matrix::timesByMat(Matrix o) {
-    int **a;//2-d array of matrix
-    //create rows
-    a=new int*[this->row];
-    //create columns
-    for(int i=0;i<this->row;i++) {
-        a[i]=new int[o.col];
-    }
-    for(int i=0;i<this->row;i++) {
-        for(int j=0;j<o.col;j++) {
-            a[i][j]=0;
-            for(int k=0;k<this->col;k++) {
-                a[i][j]+=array[i][k]*o.array[k][j];//keep doing
-            }
-        }
-    }
-    return a;
-}
 
+//multiply by a matrix
 void Matrix::multiByMat(Matrix o) {
     if(this->col!=o.getRow()) {
         cout<<"Invalid operation"<<endl;
@@ -181,130 +162,7 @@ void Matrix::multiByMat(Matrix o) {
     }
 }
 
-int Matrix::getDet() {
-    int d=0;
-    if(col!=row||col<1||row<1) {
-        cout << "ERROR:Cannot Get determinant.\n";
-        return 0;
-    } else if(col==1&&col==1) {
-        d=array[0][0];
-    } else if(col==2&&col==2) {
-        d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
-    } else {       
-        for(int i=0;i<row;i++) {
-            d+=array[0][i]*cofactor(0,i);
-        }
-    }
-    return d;
-}
-
-void Matrix::determinant() {
-    int d=0;
-    if(col!=row||col<1||row<1) {
-        cout << "ERROR:Cannot Get determinant.\n";
-        return;
-    } else if(col==1&&col==1) {
-        d=array[0][0];
-    } else if(col==2&&col==2) {
-        d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
-    } else {
-//        int **temp;//2-d array of matrix
-//        //create rows
-//        int tRow=row-1;
-//        int tCol=col-1;
-//        temp=new int*[tRow];
-//        //create columns
-//        for(int i=0;i<tRow;i++) {
-//            temp[i]=new int[tCol];
-//            for(int j=0;j<tCol;j++) {
-//                temp[i][j]=0;
-//            }
-//        }
-//        int c=0,
-//            r=0;
-//        for(int i=0;i<row;i++) {
-//            c=r=0;
-//            for(int j=1;j<row;j++) {
-//                for(int k=0;k<col;k++) {
-//                    if(k==i) continue;
-//                    temp[c][r]=array[j][k];
-//                    r++;
-//                    if(r==(row-1)) {
-//                        c++;
-//                        r=0;
-//                    }
-//                }
-//            }
-//            
-////            t=pow(-1,i)*array[0][i]*determinant(temp,tRow);
-////            cout<<"This : "<<t<<endl;
-////            d+=t;
-//            d+=pow(-1,i)*array[0][i]*determinant(temp,tRow);
-//            
-//            
-//            
-//        }
-//        for(int i=0;i<tRow;i++) {
-//                delete []temp[i];
-//            }
-//            delete []temp;
-//        
-//        
-        //Use  cofactor
-        for(int i=0;i<row;i++) {
-            d+=array[0][i]*cofactor(0,i);
-        }
-        
-    }
-    display();
-    cout<<"Determinant: "<<d<<endl;
-}
-
-int Matrix::determinant(int **a,int n) {
-    if(n==1) {
-        return a[0][0];
-    } else if(n==2) {
-        return a[0][0]*a[1][1]-a[0][1]*a[1][0];
-    } else {
-        int **temp;//2-d array of matrix
-        //create rows
-        int tRow=n-1;
-        int tCol=n-1;
-        temp=new int*[tRow];
-        //create columns
-        for(int i=0;i<tRow;i++) {
-            temp[i]=new int[tCol];
-            for(int j=0;j<tCol;j++) {
-                temp[i][j]=0;
-            }
-        }
-        int det=0;
-        int c=0,
-            r=0;
-        for(int i=0;i<n;i++) {
-            c=r=0;
-            for(int j=1;j<n;j++) {
-                for(int k=0;k<n;k++) {
-                    if(k==i) continue;
-                    temp[c][r]=a[j][k];
-                    r++;
-                    if(r==(n-1)) {
-                        c++;
-                        r=0;
-                    }
-                }
-            }
-            det+=pow(-1,i)*a[0][i]*determinant(temp,tRow);   
-        }
-        for(int i=0;i<tRow;i++) {
-                delete []temp[i];
-            }
-            delete []temp;
-        return det;
-    }
-}
-
-//Use adj(A)
+//Use adj(A) to get inverse
 void Matrix::inverse() {
     if(col!=row||col<1||row<1) {
         cout << "ERROR:Cannot Get Inverse of this Matrix.\n";
@@ -366,6 +224,153 @@ void Matrix::inverse() {
     }
 }
 
+//Determinant(output directly)
+void Matrix::determinant() {
+    int d=0;
+    if(col!=row||col<1||row<1) {
+        cout << "ERROR:Cannot Get determinant.\n";
+        return;
+    } else if(col==1&&col==1) {
+        d=array[0][0];
+    } else if(col==2&&col==2) {
+        d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
+    } else {
+//        int **temp;//2-d array of matrix
+//        //create rows
+//        int tRow=row-1;
+//        int tCol=col-1;
+//        temp=new int*[tRow];
+//        //create columns
+//        for(int i=0;i<tRow;i++) {
+//            temp[i]=new int[tCol];
+//            for(int j=0;j<tCol;j++) {
+//                temp[i][j]=0;
+//            }
+//        }
+//        int c=0,
+//            r=0;
+//        for(int i=0;i<row;i++) {
+//            c=r=0;
+//            for(int j=1;j<row;j++) {
+//                for(int k=0;k<col;k++) {
+//                    if(k==i) continue;
+//                    temp[c][r]=array[j][k];
+//                    r++;
+//                    if(r==(row-1)) {
+//                        c++;
+//                        r=0;
+//                    }
+//                }
+//            }
+//            
+////            t=pow(-1,i)*array[0][i]*determinant(temp,tRow);
+////            cout<<"This : "<<t<<endl;
+////            d+=t;
+//            d+=pow(-1,i)*array[0][i]*determinant(temp,tRow);
+//            
+//            
+//            
+//        }
+//        for(int i=0;i<tRow;i++) {
+//                delete []temp[i];
+//            }
+//            delete []temp;
+//        
+//        
+        //Use  cofactor
+        for(int i=0;i<row;i++) {
+            d+=array[0][i]*cofactor(0,i);
+        }
+    }
+    display();
+    cout<<"Determinant: "<<d<<endl;
+}
+
+//Determinant(return the result)
+int Matrix::getDet() {
+    int d=0;
+    if(col!=row||col<1||row<1) {
+        cout << "ERROR:Cannot Get determinant.\n";
+        return 0;
+    } else if(col==1&&col==1) {
+        d=array[0][0];
+    } else if(col==2&&col==2) {
+        d=array[0][0]*array[1][1]-array[0][1]*array[1][0];
+    } else {       
+        for(int i=0;i<row;i++) {
+            d+=array[0][i]*cofactor(0,i);
+        }
+    }
+    return d;
+}
+
+
+int Matrix::determinant(int **a,int n) {
+    if(n==1) {
+        return a[0][0];
+    } else if(n==2) {
+        return a[0][0]*a[1][1]-a[0][1]*a[1][0];
+    } else {
+        int **temp;//2-d array of matrix
+        //create rows
+        int tRow=n-1;
+        int tCol=n-1;
+        temp=new int*[tRow];
+        //create columns
+        for(int i=0;i<tRow;i++) {
+            temp[i]=new int[tCol];
+            for(int j=0;j<tCol;j++) {
+                temp[i][j]=0;
+            }
+        }
+        int det=0;
+        int c=0,
+            r=0;
+        for(int i=0;i<n;i++) {
+            c=r=0;
+            for(int j=1;j<n;j++) {
+                for(int k=0;k<n;k++) {
+                    if(k==i) continue;
+                    temp[c][r]=a[j][k];
+                    r++;
+                    if(r==(n-1)) {
+                        c++;
+                        r=0;
+                    }
+                }
+            }
+            det+=pow(-1,i)*a[0][i]*determinant(temp,tRow);   
+        }
+        for(int i=0;i<tRow;i++) {
+                delete []temp[i];
+            }
+            delete []temp;
+        return det;
+    }
+}
+
+
+//multiply by a matrix and return the pointer
+int **Matrix::timesByMat(Matrix o) {
+    int **a;//2-d array of matrix
+    //create rows
+    a=new int*[this->row];
+    //create columns
+    for(int i=0;i<this->row;i++) {
+        a[i]=new int[o.col];
+    }
+    for(int i=0;i<this->row;i++) {
+        for(int j=0;j<o.col;j++) {
+            a[i][j]=0;
+            for(int k=0;k<this->col;k++) {
+                a[i][j]+=array[i][k]*o.array[k][j];//keep doing
+            }
+        }
+    }
+    return a;
+}
+
+//Get the adjoint
 int **Matrix::adj() {
     int **a;
     a=new int*[row];
@@ -382,6 +387,7 @@ int **Matrix::adj() {
     return a;
 }
 
+//Cofactor of C(x,y)
 int Matrix::cofactor(int a, int b) {
     int res=0;
     int **temp;//2-d array of matrix
@@ -422,6 +428,7 @@ void Matrix::reduce_echelon() {
     
 }
 
+//Overload operator = 
 void Matrix::operator =(const Matrix& right) {
     for(int i=0;i<row;i++) {
         delete []array[i];
@@ -438,5 +445,4 @@ void Matrix::operator =(const Matrix& right) {
             array[i][j]=right.getArray()[i][j];
         }
     }
-    
 }

@@ -39,7 +39,6 @@ class LnkList {
         T &operator[](const int &);
         int getSize() const {return size;}
         void subError();
-    
 };
 
 //Copy Constructor
@@ -73,13 +72,19 @@ LnkList<T>::LnkList(const LnkList &a) {
 //Destructor
 template <class T>
 LnkList<T>::~LnkList() {
-        cout<<"Linked List destructor"<<endl;
+    cout<<"Linked List destructor"<<endl;
+    List *node;
+    List *nextNode;
+    //loop to delete the pointer
+    if(head!=NULL) {
+        node=head;
         //loop to delete the pointer
-//        for(int i=0;i<size;i++) {
-//            nextNode=node->next;
-//            delete node;
-//            node=nextNode;
-//        }
+        for(int i=0;i<size;i++) {
+            nextNode=node->next;
+            delete node;
+            node=nextNode;
+        }
+    }
     
 }
 

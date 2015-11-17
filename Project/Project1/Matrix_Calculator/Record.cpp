@@ -8,6 +8,7 @@
 
 #include "Record.h"
 
+//Constructor
 Record::Record(string s, int n) {
     init();
     pushRec(s,n);
@@ -44,6 +45,7 @@ Record::~Record() {
         } else {
             median=(vec[n/2]+vec[n/2-1])/2.0f;
         }
+        //Get the mode
         set<int> mode;
         int times=0;
         int ones=0;
@@ -64,11 +66,13 @@ Record::~Record() {
                 ones++;
             }
         }
-        cout<<endl<<"The statistics of the record: \n";
+        //Output The statistics of the record
+        cout<<endl<<"**********************************\n";
+        cout<<"The statistics of the record: \n";
         cout<<"Average: "<<ave<<endl;
         cout<<"Median: "<<median<<endl;
         if(ones==s.size()) {
-            cout<<"There is no mode"<<endl;
+            cout<<"There is no mode";
         } else {
             cout<<"Mode: ";
             for(pos=mode.begin();pos!=mode.end();++pos) {
@@ -76,14 +80,16 @@ Record::~Record() {
             }
         }
     cout<<endl;
+    cout<<"**********************************\n";
     }
     outFile.close();
 }
 
+//add record
 void Record::pushRec(string s, int n) {
     name.append(s);
     corrAns.append(n);
-    
+    //sort the record with quick sort
     quickSort(name,corrAns,0,name.getSize()-1);
 }
 
@@ -97,6 +103,7 @@ void Record::quickSort(LnkList<string> &nm, LnkList<int> &cr, int beg, int end) 
     }
 }
 
+//get the pivot
 int Record::pivot(LnkList<string> &nm,LnkList<int> &cr, int beg, int end) {
     int p=beg;
     int pivotValue=cr[beg];
@@ -112,7 +119,9 @@ int Record::pivot(LnkList<string> &nm,LnkList<int> &cr, int beg, int end) {
     return p;
 }
 
+//initialize the class
 void Record::init() {
+    //import the data from the file
     fstream inFile("Record.txt",ios::in);
     string s;
     int size,n;
@@ -131,6 +140,7 @@ void Record::init() {
 //display the record
 void Record::disRec() {
     cout<<"Rank#     Name     Record"<<endl;
+    //Need to improve: align the name and number of correct answer
     for(int i=0;i<name.getSize();i++) {
         cout<<"  "<<(i+1)<<"      "<<name[i]<<"      "<<corrAns[i]<<endl;
     }

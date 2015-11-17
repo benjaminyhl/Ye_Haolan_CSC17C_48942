@@ -5,23 +5,29 @@
  * Purpose: Project #1 --- Matrix Calculator
  */
 
+//system libraries
 #include <iostream>
 #include <vector>
 #include <fstream>
 using namespace std;
 
+//user libraries
 #include "Matrix.h"
 #include "LnkList.h" //Something wrong
 #include "Record.h"
-void menu();
+
+//Function
 void mainMenu();
-int **getArray(int &,int &);
-int **rndmArr(int,int);
+void menu();//sub-menu for calculator
+int **getArray(int &,int &);//Get the array from the user
+int **rndmArr(int,int);//randomly fill the array
 void game();
 void calculator();
 
 int main(int argc, char** argv) {
+    //set seed for random number
     srand(static_cast<unsigned int>(time(0)));
+    //menu for the program
     char ch1;
     do {
         do {
@@ -42,8 +48,6 @@ int main(int argc, char** argv) {
             cin.ignore();
         }
     } while(ch1!='0');
-    
-
 //    vector<Matrix> a;
 //    LnkList<Matrix> a;
     //Add a matrix
@@ -83,7 +87,6 @@ int main(int argc, char** argv) {
 //        }
 //    }
 //    m.inverse();
-    
     return 0;
 }
 
@@ -91,10 +94,12 @@ void game() {
     cout<<"GAME TIME"<<endl;
     cout<<"You will have 5 matrix problems to solve"<<endl;
     int correct=0;
+    //5 chances
     for(int i=1;i<=5;i++) {
         cout<<endl<<"Problem #"<<i<<": "<<endl;
         int temp=rand()%2+1;
         cout<<"Temp: "<<temp<<endl;
+        //randomly choose a problems with random 2*2 matrix
         switch(temp) {
             case 1: {
                 int ans;//answer from player
@@ -235,6 +240,7 @@ void game() {
             default:;
         }
     }
+    //Get the name from player
     string name;
     cin.ignore();
     cout<<"You got "<<correct<<"/5"<<endl;
@@ -243,7 +249,8 @@ void game() {
         getline(cin,name);
         if(name.find(' ')!=-1) cout<<"Please input without space"<<endl;
     } while(name.find(' ')!=-1);
-    Record r(name,correct);
+    //renew the record
+    Record r(name,correct);//quick sort in this class
     r.disRec();
 }
 
@@ -252,7 +259,6 @@ void calculator() {
     char sel;
     do {    
         menu();
-        
         //select program
         do {
             cout<<"You choose(0-8): ";
@@ -334,9 +340,7 @@ void calculator() {
             cin.ignore();
             cin.ignore();
         }   
-    }while(sel!='0');    
-    
-    
+    }while(sel!='0');  
 }
 
 void mainMenu() {
@@ -361,6 +365,7 @@ void menu() {
     cout<<"0. Exit"<<endl;
 }
 
+//Get the array from the user
 int **getArray(int &row,int &col) {
     cout<<"Row and Column of matrix: ";
     cin>>row>>col;
@@ -382,6 +387,7 @@ int **getArray(int &row,int &col) {
     return array;
 }
 
+//randomly fill the array
 int **rndmArr(int row,int col) {
     int **array;
     array=new int*[row];
