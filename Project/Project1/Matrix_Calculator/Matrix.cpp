@@ -6,7 +6,7 @@
  */
 
 #include "Matrix.h"
-#include <cmath>
+#include <cmath> //power of -1
 
 //Constructor
 Matrix::Matrix(int r, int c, int **a, string nm) {

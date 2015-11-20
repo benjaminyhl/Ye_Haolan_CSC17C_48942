@@ -13,7 +13,7 @@ using namespace std;
 
 //user libraries
 #include "Matrix.h"
-#include "LnkList.h" //Something wrong
+#include "LnkList.h"
 #include "Record.h"
 
 //Function
