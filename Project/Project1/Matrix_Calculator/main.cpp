@@ -98,7 +98,7 @@ void game() {
     for(int i=1;i<=5;i++) {
         cout<<endl<<"Problem #"<<i<<": "<<endl;
         int temp=rand()%2+1;
-        cout<<"Temp: "<<temp<<endl;
+//        cout<<"Temp: "<<temp<<endl;
         //randomly choose a problems with random 2*2 matrix
         switch(temp) {
             case 1: {
