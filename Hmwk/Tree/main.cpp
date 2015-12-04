@@ -13,12 +13,16 @@ int main(int argc, char** argv) {
     Tree t;
     t.insert(10);
     t.insert(8);
-//    t.insert(12);
-//    t.insert(13);
-//    t.insert(9);
-//    t.insert(4);
-//    cout<<t.getSize()<<endl;
-//    t.print();
+    t.insert(12);
+    t.insert(13);
+    t.insert(9);
+    t.insert(4);
+    t.insert(1);
+    t.insert(2);
+    cout<<t.getSize()<<endl;
+    t.inPnt();
+    t.postPnt();
+    t.prePnt();
     return 0;
 }
 

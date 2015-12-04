@@ -18,19 +18,24 @@ class Tree {
             int value;
             struct Node *left;
             struct Node *right;
-            struct Node *parent;
         };
         Node *root;
        int size;      // Actual Size of the array
        void insert(Node *&,Node *&);
+       void balance();//balance the tree
+       void preOrder(Node *);
+       void inOrder(Node *);
+       void postOrder(Node *);
+       void printNode(Node *);
+       void clean(Node *);
     public:      
        Tree();   //Default constructor  
        ~Tree();  // Destructor declaration
-
        void insert(int);
        void del(int);//delete
-       void balance();//balance the tree
-       void print() const;
+       void prePnt(); //print out tree with pre-order
+       void inPnt(); //print out tree with in-order
+       void postPnt(); //print out tree with post-order
        int getSize() const {return size;} //return size
 };
 
@@ -40,7 +45,16 @@ Tree::Tree() {
 }
 
 Tree::~Tree() {
-    
+    clean(root);
+}
+
+void Tree::clean(Node *node) {
+    if(node!=NULL) {
+//        cout<<"clean "<<node->value<<endl;
+        clean(node->left);
+        clean(node->right);
+        delete node;
+    }
 }
 
 void Tree::insert(int n) {
@@ -50,15 +64,13 @@ void Tree::insert(int n) {
     newNode->right=NULL;
     //1st way insert -- recursion
     insert(root,newNode);
-    
-    //2nd way insert -- not recursion
-    
     size++;
 }
 
 void Tree::insert(Node *&node, Node*&newNode) {
     if(node==NULL)  node=newNode;
-    else if(newNode->value <= node->value) insert(node->left,newNode);
+    else if(newNode->value <= node->value) 
+        insert(node->left,newNode);
     else insert(node->right,newNode);
 }
 
@@ -72,18 +84,51 @@ void Tree::del(int n) {
     
 }
 
-void Tree::print() const {
-    //get the first element
-    
-    Node *worker=root;
-    while(worker->left!=NULL) {
-        cout<<"Hel"<<endl;
-        worker=worker->left;
-    }
-    cout<<worker->value<<" ";
-//    if(worker->right!=NULL) 
+void Tree::printNode(Node *node) {
+    cout<<node->value<<" ";
 }
 
+void Tree::preOrder(Node *node) {
+    if(node!=NULL) {
+        printNode(node);
+        preOrder(node->left);
+        preOrder(node->right);
+    }
+} 
+
+void Tree::inOrder(Node *node) {
+    if(node!=NULL) {
+        inOrder(node->left);
+        printNode(node);
+        inOrder(node->right);
+    }
+}
+
+void Tree::postOrder(Node *node) {
+    if(node!=NULL) {
+        postOrder(node->left);
+        postOrder(node->right);
+        printNode(node);
+    }
+}
+
+void Tree::prePnt() {
+    cout<<"Print with pre-order:  ";
+    preOrder(root); //pre-order output
+    cout<<endl;
+}
+
+void Tree::inPnt() {
+    cout<<"Print with in-order:   ";
+    inOrder(root);  //in-order output
+    cout<<endl;
+}
+
+void Tree::postPnt() {
+    cout<<"Print with post-order: ";
+    postOrder(root);//post-order output
+    cout<<endl;
+}
 
 #endif	/* TREE_H */
 
