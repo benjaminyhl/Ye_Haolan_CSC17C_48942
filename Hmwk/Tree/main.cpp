@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 using namespace std;
 
 #include "Tree.h"
@@ -14,26 +15,34 @@ using namespace std;
 int main(int argc, char** argv) {
     //set seed
     srand(static_cast<unsigned int>(time(0)));
+    vector<int> vec;
     Tree t;
-    t.insert(55);
-    t.insert(40);
-    t.insert(60);
-    t.insert(30);
-    t.insert(45);
-    t.insert(70);
-    t.insert(20);
-    t.dele(45);
-    t.dele(70);
-    t.dele(20);
-    t.dele(60);
-//    t.insert(5);
-//    t.insert(25);
-//    t.insert(22);
-    cout<<t.getSize()<<endl;
+    //insert random number and store them into vector and tree
+    for(int i=0;i<10;i++) {
+        int temp=rand()%90+10;
+        cout<<"Insert "<<temp<<" to tree"<<endl;
+        t.insert(temp);
+        vec.push_back(temp);
+    }
+    //Traversing the tree
+    cout<<endl;
+    cout<<"Traversing the tree: "<<endl;
     t.inPnt();
-    
-//    t.postPnt();
-//    t.prePnt();
+    t.prePnt();
+    t.postPnt();
+    cout<<endl;
+    //randomly select 5 elements from vector, and delete this number from the tree
+    for(int i=0;i<5;i++) {
+        int temp=vec[rand()%vec.size()];
+        cout<<"Delete "<<temp<<" from the tree"<<endl;
+        t.dele(temp);
+    }
+    //Traversing the tree again
+    cout<<endl;
+    cout<<"Traversing the tree: "<<endl;
+    t.inPnt();
+    t.prePnt();
+    t.postPnt();
     return 0;
 }
 

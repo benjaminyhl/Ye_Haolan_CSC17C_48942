@@ -52,7 +52,7 @@ class Tree {
 
 //Constructor
 Tree::Tree() {
-    root=NULL;
+    root=NULL; 
     size=0;
 }
 
@@ -73,12 +73,13 @@ void Tree::clean(Node *node) {
 
 //insert a number to a tree
 void Tree::insert(int n) {
+    //create a node to store the integer
     Node *newNode=new Node;
     newNode->value=n;
     newNode->left=NULL;
     newNode->right=NULL;
     newNode->height=1;
-    //1st way insert -- recursion
+    //insert with recursion
     insert(root,newNode);
     size++;
 }
@@ -92,8 +93,9 @@ void Tree::insert(Node *&node, Node *&newNode) {
     } else {
         insert(node->right,newNode);
     }
+    //renew the height the node
     node->height=max(getHeight(node->left),getHeight(node->right))+1;
-    int b=getBalance(node); //balance
+    int b=getBalance(node); //get the balance of the node
     
     //Right case
     if(b<-1) {
@@ -116,26 +118,28 @@ void Tree::insert(Node *&node, Node *&newNode) {
     }
 }
 
-
-
+//Get the balance of the node
 int Tree::getBalance(Node *node) {
     if(node==NULL) return 0;
     return getHeight(node->left)-getHeight(node->right);
 }
+
 
 //Open the graph in the txt file from the folder
 
 //Rotate for Left Left case
 void Tree::rotateLL(Node *&z) {
 //    cout<<"z is "<<z->value<<" height "<<z->height<<endl;
-    
+    //copy
     Node *y=z->left;
     Node *t3=y->right;
 
 //    cout<<"y is "<<y->value<<" height "<<y->height<<endl<<endl;
+    //Perform rotation
     y->right=z;
     z->left=t3;
     
+    //renew the height
     z->height=max(getHeight(z->left),getHeight(z->right))+1;
     y->height=max(getHeight(y->left),getHeight(y->right))+1;
     z=y;
@@ -148,7 +152,7 @@ void Tree::rotateLL(Node *&z) {
 
 //Rotate for Left Right case
 void Tree::rotateLR(Node *&z) {
-//    cout<<"LR case1111"<<endl;
+    //change to LL case
     rotateRR(z->left);
 //    cout<<z->value<<"  "<<z->height<<endl;
 //    cout<<z->left->value<<"  "<<z->left->height<<endl;
@@ -158,12 +162,13 @@ void Tree::rotateLR(Node *&z) {
 
 //Rotate for Right Right case 
 void Tree::rotateRR(Node *&z) {
+    //copy
     Node *y=z->right;
     Node *t2=y->left;
-    
+    //Perform rotation
     y->left=z;
     z->right=t2;
-    
+    //renew the height
     z->height=max(getHeight(z->left),getHeight(z->right))+1;
     y->height=max(getHeight(y->left),getHeight(y->right))+1;
     
@@ -172,6 +177,7 @@ void Tree::rotateRR(Node *&z) {
 
 //Rotate for Right Left case
 void Tree::rotateRL(Node *&z) {
+    //Change to RR case first
     rotateLL(z->right);
     rotateRR(z);
 }
@@ -234,20 +240,21 @@ void Tree::dele(Node *&node,int n) {
     if(b<-1) {
         
         if(getBalance(node->right)<=0) {
-            cout<<"RR case "<<"at "<<node->value<<endl;
+//            cout<<"RR case "<<"at "<<node->value<<endl;
             rotateRR(node);
         } else {
-            cout<<"RL case "<<"at "<<node->value<<endl;
+//            cout<<"RL case "<<"at "<<node->value<<endl;
             rotateRL(node);
         }
     }
+    //left case
     if(b>1) {
         
         if(getBalance(node->left)>=0) {
-            cout<<"LL case "<<"at "<<node->value<<endl;
+//            cout<<"LL case "<<"at "<<node->value<<endl;
             rotateLL(node);
         } else {
-            cout<<"LR case "<<"at "<<node->value<<endl;
+//            cout<<"LR case "<<"at "<<node->value<<endl;
             rotateLR(node);
         }
     }
@@ -255,7 +262,8 @@ void Tree::dele(Node *&node,int n) {
 
 
 void Tree::printNode(Node *node) {
-    cout<<node->value<<" "<<node->height<<endl;
+    cout<<node->value<<" ";
+//    cout<<node->height<<endl;
 }
 
 void Tree::preOrder(Node *node) {
@@ -289,7 +297,8 @@ void Tree::prePnt() {
 }
 
 void Tree::inPnt() {
-    cout<<"Print with in-order:   \n";
+    cout<<"Print with in-order:   ";
+//    cout<<endl;
     inOrder(root);  //in-order output
     cout<<endl;
 }
