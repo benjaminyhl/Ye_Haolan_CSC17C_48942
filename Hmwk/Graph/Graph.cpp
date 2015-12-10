@@ -25,6 +25,7 @@ void Graph::addEdge(int a, int b) {
 
 //Traverse the graph with Breath First Search
 void Graph::BFS(int s) {
+    //bool array for each node
     bool *visited=new bool[nVert];
     for(int i=0;i<nVert;i++) {
         visited[i]=false;
@@ -53,7 +54,16 @@ void Graph::BFS(int s) {
 }
 
 //Traverse the graph with Depth  First Search
-void Graph::DFS(int n) {
+void Graph::DFS(int s) {
+    //bool array for each node
+    bool *visited=new bool[nVert];
+    for(int i=0;i<nVert;i++) {
+        visited[i]=false;
+    }
+    stack<int> st;
+    
+    visited[s]=true;
+    st.push(s);
     
 }
 
@@ -69,6 +79,7 @@ void Graph::primMST() {
 
 //shortest path between two points with Dijkstra's algorithm
 int Graph::shortestPath(int a, int b) {
-    
+    int c=1;
+    return c;
 }
 
