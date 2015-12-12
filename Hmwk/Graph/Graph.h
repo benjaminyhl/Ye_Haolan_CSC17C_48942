@@ -14,17 +14,17 @@
 #include <iostream>
 #include <list>
 #include <iterator>
-#include <stack>
 using namespace std;
 
 class Graph {
     private:
         int nVert;//number of vertices
-        list<int> *adj;
+        list<pair<int,int> > *adj;
+        void DFS(int,bool *);
     public:
         Graph(int);//constructor
         ~Graph();
-        void addEdge(int,int);
+        void addEdge(int,int,int);
         void BFS(int);//Traverse the graph with Breath First Search
         void DFS(int);//Traverse the graph with Depth  First Search
         void primMST();//   Prim’s Minimum Spanning Tree (MST)
