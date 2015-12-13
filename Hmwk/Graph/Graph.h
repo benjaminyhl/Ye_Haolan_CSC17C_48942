@@ -14,6 +14,8 @@
 #include <iostream>
 #include <list>
 #include <iterator>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 class Graph {
