@@ -12,10 +12,14 @@
 Graph::Graph(int n) {
     nVert=n;
     adj=new list<pair<int,int> >[n];
+    parent=new int[nVert];
+    for(int i=0;i<nVert;i++)
+        parent[i]=-1;
 }
 
 Graph::~Graph() {
     delete []adj;
+    delete []parent;
 }
 
 void Graph::addEdge(int a, int b,int d) {
@@ -96,26 +100,7 @@ void Graph::krusMST() {
     for(int i=0;i<nVert;i++) {
         for(it=adj[i].begin();it!=adj[i].end();++it) {
             ls.push_back(make_pair((*it).second,make_pair(i,(*it).first)));
-            
-//            if(ls.empty()) {
-//                min=(*it).second;
-//                max=(*it).second;
-////                cout<<min<<" "<<max<<endl;
-//                ls.push_back(make_pair(i,make_pair((*it).first,(*it).second)));
-////                cout<<"111";
-//            } else {
-//                if((*it).second<min) {
-//                    min=(*it).second;
-////                    cout<<"Min: "<<min<<endl;
-//                    ls.push_front(make_pair(i,make_pair((*it).first,(*it).second)));
-//                } else {
-//                    max=(*it).second;
-////                    cout<<"Max: "<<max<<endl;
-//                    ls.push_back(make_pair(i,make_pair((*it).first,(*it).second)));
-//                }
-//            }
         }
-        
     }
     sort(ls.begin(),ls.end());
     cout<<"Size: "<<ls.size()<<endl;
@@ -129,27 +114,46 @@ void Graph::krusMST() {
 //        c=(*it2).second.second;
 //        cout<<a<<" "<<b<<" "<<c<<endl;
 //    }
-    
-    bool *visited=new bool[nVert];
-    for(int i=0;i<nVert;i++) {
-        visited[i]=false;
-    }
     int weight=0;//weight of the tree
+    set<int> s;
 //Get the minimum spanning tree
     for(;it2!=ls.end();++it2) {
-        //If not first and second node both have been visited
-        if(!(visited[(*it2).second.first]&&visited[(*it2).second.second])) {
-//            cout<<"aaa"<<endl;
+        //Determine create circle or not
+        if(!isCycle((*it2).second.first,(*it2).second.second)) {
             weight+=(*it2).first;
-            visited[(*it2).second.first]=true;
-            visited[(*it2).second.second]=true;
+            s.insert((*it2).second.first);
+            s.insert((*it2).second.second);
             cout<<(*it2).second.first<<" --- "<<(*it2).second.second;
             cout<<"   "<<(*it2).first<<endl;
         }
     }
-    
-    
-    delete []visited;
+    cout<<"Weight: "<<weight<<endl;
+}
+
+//find the parent
+int Graph::find(int x) {
+    if(parent[x]==-1)
+        return x;
+    return find(parent[x]);
+}
+
+//Determine it creates circle after connect x and y node
+bool Graph::isCycle(int x,int y) {
+    // Iterate through all edges of graph, find subset of both
+    // vertices of every edge, if both subsets are same, then 
+    // there is cycle in graph.
+    int xpar=find(x);
+    int ypar=find(y);
+    if(xpar==ypar) return true;
+    unionVer(x,y);
+    return false;
+}
+
+//put x and y into union
+void Graph::unionVer(int x, int y) {
+    int xset=find(x);
+    int yset=find(y);
+    parent[xset]=yset;
 }
 
 //   Prim’s Minimum Spanning Tree (MST)

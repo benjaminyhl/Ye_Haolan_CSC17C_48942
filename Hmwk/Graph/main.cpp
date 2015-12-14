@@ -16,28 +16,50 @@ using namespace std;
 #include "Graph.h"
 
 int main(int argc, char** argv) {
-    Graph g(8);
+//    Graph g(8);
+//    g.addEdge(0, 1, 3);
+//    g.addEdge(0, 5, 7);
+//    g.addEdge(0, 4, 4);
+//    g.addEdge(1, 0, 3);
+//    g.addEdge(1, 2, 5);
+//    g.addEdge(1, 5, 8);
+//    g.addEdge(2, 1, 5);
+//    g.addEdge(2, 3, 4);
+//    g.addEdge(2, 5, 6);
+//    g.addEdge(3, 2, 4);
+//    g.addEdge(3, 4, 2);
+//    g.addEdge(3, 5, 8);
+//    g.addEdge(4, 0, 4);
+//    g.addEdge(4, 3, 2);
+//    g.addEdge(4, 5, 5);
+//    g.addEdge(5, 0, 7);
+//    g.addEdge(5, 1, 8);
+//    g.addEdge(5, 2, 6);
+//    g.addEdge(5, 3, 8);
+//    g.addEdge(5, 4, 5);
+    
+    Graph g(6);
     g.addEdge(0, 1, 3);
-    g.addEdge(0, 5, 7);
-    g.addEdge(0, 4, 4);
+    g.addEdge(0, 2, 1);
+    g.addEdge(0, 3, 6);
     g.addEdge(1, 0, 3);
     g.addEdge(1, 2, 5);
-    g.addEdge(1, 5, 8);
+    g.addEdge(1, 4, 3);
     g.addEdge(2, 1, 5);
-    g.addEdge(2, 3, 4);
-    g.addEdge(2, 5, 6);
-    g.addEdge(3, 2, 4);
-    g.addEdge(3, 4, 2);
-    g.addEdge(3, 5, 8);
-    g.addEdge(4, 0, 4);
-    g.addEdge(4, 3, 2);
-    g.addEdge(4, 5, 5);
-    g.addEdge(5, 0, 7);
-    g.addEdge(5, 1, 8);
-    g.addEdge(5, 2, 6);
-    g.addEdge(5, 3, 8);
-    g.addEdge(5, 4, 5);
-    
+    g.addEdge(2, 3, 5);
+    g.addEdge(2, 4, 6);
+    g.addEdge(2, 5, 4);
+    g.addEdge(3, 0, 6);
+    g.addEdge(3, 2, 5);
+    g.addEdge(3, 5, 2);
+    g.addEdge(4, 1, 3);
+    g.addEdge(4, 2, 6);
+    g.addEdge(4, 5, 6);
+    g.addEdge(5, 2, 4);
+    g.addEdge(5, 3, 2);
+    g.addEdge(5, 4, 6);
+    g.krusMST();
+//    g.addEdge(5, 4, 5);
 //    Graph g(4);
 //    g.addEdge(0, 1,1);
 //    g.addEdge(0, 2,1);
@@ -46,9 +68,9 @@ int main(int argc, char** argv) {
 //    g.addEdge(2, 3,1);
 //    g.addEdge(3, 3,1);
 
-    cout << "Following is Breadth First Traversal (starting from vertex 2): \n";
+//    cout << "Following is Breadth First Traversal (starting from vertex 2): \n";
 //    g.DFS(0);
-    g.krusMST();
+//    g.krusMST();
     return 0;
 }
 

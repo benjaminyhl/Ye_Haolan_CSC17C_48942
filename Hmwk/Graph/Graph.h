@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <list>
+#include <set>
 #include <iterator>
 #include <vector>
 #include <algorithm>
@@ -21,8 +22,12 @@ using namespace std;
 class Graph {
     private:
         int nVert;//number of vertices
+        int *parent;
         list<pair<int,int> > *adj;
         void DFS(int,bool *);
+        void unionVer(int,int);
+        bool isCycle(int,int);
+        int find(int);
     public:
         Graph(int);//constructor
         ~Graph();
