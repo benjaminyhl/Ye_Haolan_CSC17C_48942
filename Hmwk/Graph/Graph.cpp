@@ -44,7 +44,7 @@ void Graph::BFS(int s) {
     queue.push_back(s);
     
     list<pair<int,int> >::iterator it;
-    
+    cout<<"Traverse with Breath First Search from 0: ";
     while(!queue.empty()) {
         s=queue.front();
         cout<<s<<" ";
@@ -67,6 +67,7 @@ void Graph::DFS(int s) {
     for(int i=0;i<nVert;i++) {
         visited[i]=false;
     }
+    cout<<"Traverse with Depth  First Search from 0: ";
     //Traversal recursively
     DFS(s,visited);
     cout<<endl<<endl;
@@ -103,7 +104,6 @@ void Graph::krusMST() {
         }
     }
     sort(ls.begin(),ls.end());
-    cout<<"Size: "<<ls.size()<<endl;
     vector<pair< int, pair<int,int> > >::iterator it2=ls.begin();
     
     //output all the edge with vertices
@@ -117,6 +117,7 @@ void Graph::krusMST() {
     int weight=0;//weight of the tree
     set<int> s;
 //Get the minimum spanning tree
+    cout<<"The minimum spanning tree: "<<endl;
     for(;it2!=ls.end();++it2) {
         //Determine create circle or not
         if(!isCycle((*it2).second.first,(*it2).second.second)) {
@@ -264,11 +265,11 @@ void Graph::shortestPath(int x, int y) {
     } while(length>0);
     
     //Output the path and the length
-    cout<<"The shortest length: "<<nodes[y].permDis<<endl;
+    
     for(it2=path.begin();it2!=path.end();++it2) {
         cout<<(*it2).first.first<<" ----> "<<(*it2).first.second<<"   "<<(*it2).second<<endl;
     }
-    
+    cout<<"The shortest length: "<<nodes[y].permDis<<endl;
     delete []nodes;
 }
 
