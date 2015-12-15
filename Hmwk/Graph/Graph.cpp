@@ -171,13 +171,14 @@ void Graph::shortestPath(int x, int y) {
         vector<pair<int,int> > neigbor;
         //pair(Distance of Edge, End Node)
     };
+    list<pair<int,int> >::iterator it;
     Node *nodes=new Node[nVert];
     int currNode=x;
     for(int i=0;i<nVert;i++) {
         nodes[i].tempDis=0;
         nodes[i].permDis=0;
         nodes[i].order=0;
-        list<pair<int,int> >::iterator it=adj[i].begin();
+        it=adj[i].begin();
         for(;it!=adj[i].end();++it) {
             nodes[i].neigbor.push_back(make_pair((*it).second,(*it).first));
         }
@@ -235,11 +236,6 @@ void Graph::shortestPath(int x, int y) {
         
 //    }
     } while(nodes[y].permDis==0);
-    
-
-        
-        
-        
         
     //Output the temp data
     for(int i=0;i<nVert;i++) {
@@ -253,11 +249,25 @@ void Graph::shortestPath(int x, int y) {
         }
         cout<<endl;
     }
+    int length=nodes[y].permDis;
+    list<pair<pair<int,int>,int> > path;
+    list<pair<pair<int,int>,int> >::iterator it2;
+    do {
+        for(int i=0;i<nodes[currNode].neigbor.size();i++) {
+            if((length-nodes[currNode].neigbor[i].first)==nodes[nodes[currNode].neigbor[i].second].permDis) {
+                path.push_front(make_pair(make_pair(nodes[currNode].neigbor[i].second,currNode),nodes[currNode].neigbor[i].first));
+                length=nodes[nodes[currNode].neigbor[i].second].permDis;
+                currNode=nodes[currNode].neigbor[i].second;
+                break;
+            }
+        }
+    } while(length>0);
     
-    
-    
+    //Output the path and the length
     cout<<"The shortest length: "<<nodes[y].permDis<<endl;
-    
+    for(it2=path.begin();it2!=path.end();++it2) {
+        cout<<(*it2).first.first<<" ----> "<<(*it2).first.second<<"   "<<(*it2).second<<endl;
+    }
     
     delete []nodes;
 }
