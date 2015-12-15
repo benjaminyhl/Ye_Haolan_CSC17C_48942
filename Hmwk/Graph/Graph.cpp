@@ -189,29 +189,52 @@ void Graph::shortestPath(int x, int y) {
 //    ----------------------
 //    |   Temp Distance    |
 //    ----------------------
-    int lowest=nodes[currNode].neigbor[0].first; //initialize lowest distance
-    int lowestNode=nodes[currNode].neigbor[0].second;
     int orderNum=0;
     nodes[currNode].order=(++orderNum);
     nodes[currNode].permDis=0;
     
-//    do {
+    int *index=new int[nVert];
+    for(int i=0;i<nVert;i++) {
+        index[i]=i;
+    }
+    
+    do {
+//    for(int j=0;j<2;j++) {
         for(int i=0;i<nodes[currNode].neigbor.size();i++) {
-//            cout<<nodes[x].neigbor[i].second<<" "<<nodes[x].neigbor[i].first<<endl;
-            int dis=nodes[currNode].neigbor[i].first+nodes[currNode].tempDis;
-            if(nodes[nodes[currNode].neigbor[i].second].tempDis==0||
-                    dis<nodes[nodes[currNode].neigbor[i].second].tempDis)
-                nodes[nodes[currNode].neigbor[i].second].tempDis=dis;
-            if(dis<lowest) {
-                lowest=dis;
-                lowestNode=nodes[currNode].neigbor[i].second;
+            //set the temp distance to the node that doesn't have order number
+            if(nodes[nodes[currNode].neigbor[i].second].order==0) {
+    //            cout<<nodes[x].neigbor[i].second<<" "<<nodes[x].neigbor[i].first<<endl;
+                int dis=nodes[currNode].neigbor[i].first+nodes[currNode].tempDis;
+                if(nodes[nodes[currNode].neigbor[i].second].tempDis==0||
+                        dis<nodes[nodes[currNode].neigbor[i].second].tempDis)
+                    nodes[nodes[currNode].neigbor[i].second].tempDis=dis;
             }
         }
-        nodes[lowestNode].order=(++orderNum);
-        nodes[lowestNode].permDis=nodes[lowestNode].tempDis;
-        currNode=lowestNode;
+        //sort the temp distance and get the node with lowest distance
+        for(int k=0;k<nVert-1;k++) {
+            for(int h=k+1;h<nVert;h++) {
+                if(nodes[index[k]].tempDis>nodes[index[h]].tempDis) {
+                    int temp=index[k];
+                    index[k]=index[h];
+                    index[h]=temp;
+                }
+            }
+        }
+         
+        //Finish the sort and get the node with lowest distance
+        for(int k=0;k<nVert;k++) {
+            if(nodes[index[k]].permDis==0&&nodes[index[k]].tempDis!=0) {
+                currNode=index[k];
+                break;
+            }
+        }
+//        cout<<"Current Node is "<<currNode<<endl;
+        nodes[currNode].order=(++orderNum);
+        nodes[currNode].permDis=nodes[currNode].tempDis;
+//        currNode=lowestNode;
         
-//    } while(nodes[y].permDis==0);
+//    }
+    } while(nodes[y].permDis==0);
     
 
         
@@ -230,8 +253,10 @@ void Graph::shortestPath(int x, int y) {
         }
         cout<<endl;
     }
-
     
+    
+    
+    cout<<"The shortest length: "<<nodes[y].permDis<<endl;
     
     
     delete []nodes;
