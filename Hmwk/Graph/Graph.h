@@ -36,7 +36,7 @@ class Graph {
         void DFS(int);//Traverse the graph with Depth  First Search
         void primMST();//   Prim’s Minimum Spanning Tree (MST)
         void krusMST();//Kruskal’s Minimum Spanning Tree (MST)
-        int shortestPath(int,int);//shortest path between two points with Dijkstra's algorithm
+        void shortestPath(int,int);//shortest path between two points with Dijkstra's algorithm
 };
 
 #endif	/* GRAPH_H */

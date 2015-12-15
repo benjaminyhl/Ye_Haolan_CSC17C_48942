@@ -162,8 +162,78 @@ void Graph::primMST() {
 }
 
 //shortest path between two points with Dijkstra's algorithm
-int Graph::shortestPath(int a, int b) {
-    int c=1;
-    return c;
+void Graph::shortestPath(int x, int y) {
+    struct Node {
+        int order; //order
+        int tempDis;
+//        int name;
+        int permDis;
+        vector<pair<int,int> > neigbor;
+        //pair(Distance of Edge, End Node)
+    };
+    Node *nodes=new Node[nVert];
+    int currNode=x;
+    for(int i=0;i<nVert;i++) {
+        nodes[i].tempDis=0;
+        nodes[i].permDis=0;
+        nodes[i].order=0;
+        list<pair<int,int> >::iterator it=adj[i].begin();
+        for(;it!=adj[i].end();++it) {
+            nodes[i].neigbor.push_back(make_pair((*it).second,(*it).first));
+        }
+        sort(nodes[i].neigbor.begin(),nodes[i].neigbor.end());
+    }
+//    _____________________
+//    | Order# | Permanent |
+//    | Number | Distance  |
+//    ----------------------
+//    |   Temp Distance    |
+//    ----------------------
+    int lowest=nodes[currNode].neigbor[0].first; //initialize lowest distance
+    int lowestNode=nodes[currNode].neigbor[0].second;
+    int orderNum=0;
+    nodes[currNode].order=(++orderNum);
+    nodes[currNode].permDis=0;
+    
+//    do {
+        for(int i=0;i<nodes[currNode].neigbor.size();i++) {
+//            cout<<nodes[x].neigbor[i].second<<" "<<nodes[x].neigbor[i].first<<endl;
+            int dis=nodes[currNode].neigbor[i].first+nodes[currNode].tempDis;
+            if(nodes[nodes[currNode].neigbor[i].second].tempDis==0||
+                    dis<nodes[nodes[currNode].neigbor[i].second].tempDis)
+                nodes[nodes[currNode].neigbor[i].second].tempDis=dis;
+            if(dis<lowest) {
+                lowest=dis;
+                lowestNode=nodes[currNode].neigbor[i].second;
+            }
+        }
+        nodes[lowestNode].order=(++orderNum);
+        nodes[lowestNode].permDis=nodes[lowestNode].tempDis;
+        currNode=lowestNode;
+        
+//    } while(nodes[y].permDis==0);
+    
+
+        
+        
+        
+        
+    //Output the temp data
+    for(int i=0;i<nVert;i++) {
+        cout<<"#"<<i<<": "<<endl;
+        cout<<nodes[i].order<<endl;
+        cout<<nodes[i].permDis<<endl;
+        cout<<nodes[i].tempDis<<endl;
+        
+        for(int j=0;j<nodes[i].neigbor.size();j++) {
+            cout<<nodes[i].neigbor[j].second<<" "<<nodes[i].neigbor[j].first<<endl;
+        }
+        cout<<endl;
+    }
+
+    
+    
+    
+    delete []nodes;
 }
 
