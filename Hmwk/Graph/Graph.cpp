@@ -237,18 +237,18 @@ void Graph::shortestPath(int x, int y) {
 //    }
     } while(nodes[y].permDis==0);
         
-    //Output the temp data
-    for(int i=0;i<nVert;i++) {
-        cout<<"#"<<i<<": "<<endl;
-        cout<<nodes[i].order<<endl;
-        cout<<nodes[i].permDis<<endl;
-        cout<<nodes[i].tempDis<<endl;
-        
-        for(int j=0;j<nodes[i].neigbor.size();j++) {
-            cout<<nodes[i].neigbor[j].second<<" "<<nodes[i].neigbor[j].first<<endl;
-        }
-        cout<<endl;
-    }
+//    //Output the temp data
+//    for(int i=0;i<nVert;i++) {
+//        cout<<"#"<<i<<": "<<endl;
+//        cout<<nodes[i].order<<endl;
+//        cout<<nodes[i].permDis<<endl;
+//        cout<<nodes[i].tempDis<<endl;
+//        
+//        for(int j=0;j<nodes[i].neigbor.size();j++) {
+//            cout<<nodes[i].neigbor[j].second<<" "<<nodes[i].neigbor[j].first<<endl;
+//        }
+//        cout<<endl;
+//    }
     int length=nodes[y].permDis;
     list<pair<pair<int,int>,int> > path;
     list<pair<pair<int,int>,int> >::iterator it2;
