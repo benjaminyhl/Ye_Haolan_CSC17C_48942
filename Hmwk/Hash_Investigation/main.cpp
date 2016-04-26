@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
             case 11:cout<<endl<<"------------APHash------------"<<endl; break;
             default:;
         }
-        for(int j=n;j<pow(10,7);j*=10) {
+        for(int j=n;j<pow(10,4);j*=10) {
             
         
             map<unsigned int, unsigned int> test;
